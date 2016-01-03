@@ -1,0 +1,20 @@
+{
+  "name": "chrome-steam-hover",
+  "description": "Show Steam app details with mouse hover on a Steam link",
+  "authors": [
+    "Derek <derek@skylark95.com>"
+  ],
+  "license": "GPL-3.0",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}
