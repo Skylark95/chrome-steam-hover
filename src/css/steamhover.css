@@ -12,12 +12,19 @@
     line-height: 12px;
     color: white;
     font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
+    font-weight: normal;
 }
 .sh_price_platform, .sh_price_initial, .sh_price_final, .sh_price_discount {
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 10px;
     font-family: Tahoma, Arial, Helvetica, sans-serif;
+}
+.sh_price_platform {
+    position: relative;
+    left: -2px;
+    color: #b0aeac;
+    font-weight: normal;
 }
 .sh_price_initial {
     text-decoration: line-through;
