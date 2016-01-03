@@ -2,7 +2,6 @@ var gulp = require('gulp'),
     connect = require('gulp-connect'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
-    htmlmin = require('gulp-htmlmin'),
     mainBowerFiles = require('main-bower-files');
 
 gulp.task('connect', function() {
@@ -14,8 +13,19 @@ gulp.task('connect', function() {
 
 gulp.task('html', function() {
     gulp.src('./src/*.html')
-        .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(gulp.dest('dist'))
+        .pipe(connect.reload());
+});
+
+gulp.task('js', function() {
+    gulp.src('./src/js/*.js')
+        .pipe(gulp.dest('dist/js'))
+        .pipe(connect.reload());
+});
+
+gulp.task('css', function() {
+    gulp.src('./src/css/*.css')
+        .pipe(gulp.dest('dist/css'))
         .pipe(connect.reload());
 });
 
@@ -33,6 +43,9 @@ gulp.task('vendor', function() {
 
 gulp.task('watch', function() {
     gulp.watch(['./src/*.html'], ['html']);
+    gulp.watch(['./src/js/*.js'], ['js']);
+    gulp.watch(['./src/css/*.css'], ['css']);
 });
 
 gulp.task('default', ['connect', 'watch']);
+gulp.task('build', ['vendor', 'html', 'js', 'css', 'assets']);

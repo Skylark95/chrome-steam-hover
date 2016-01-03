@@ -1,0 +1,49 @@
+.sh_container {
+    width: 600px;
+    border: 2px solid red;
+    padding: 10px;
+    background-color: #3b3938;
+}
+.sh_header_image > img {
+    height: 125px;
+}
+.sh_title {
+    font-size: 26px;
+    line-height: 12px;
+    color: white;
+    font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
+}
+.sh_price_platform, .sh_price_initial, .sh_price_final, .sh_price_discount {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+}
+.sh_price_initial {
+    text-decoration: line-through;
+    color: #626366;
+}
+.sh_price_final {
+    color: #b0aeac;
+}
+.sh_price_discount {
+    color: #a4d007;
+}
+.sh_description {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #c6d4df;
+    font-size: 12px;
+}
+.sh_platform_win, .sh_platform_mac, .sh_platform_linux {
+    display: none;
+    position: relative;
+    top: 4px;
+}
+.sh_store_page, .sh_steam_db {
+    text-decoration: none;
+    color: #67c1f5;
+}
+.sh_separator {
+    color: #696563;
+    font-size: 20px;
+}

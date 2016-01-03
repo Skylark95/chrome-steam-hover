@@ -1,113 +1,33 @@
 <!doctype html>
 <html>
-    <style>
-        .sh_container {
-            width: 600px;
-            border: 2px solid red;
-            padding: 10px;
-            background-color: #3b3938;
-        }
-        .sh_header_image > img {
-            height: 125px;
-        }
-        .sh_title {
-            font-size: 26px;
-            line-height: 12px;
-            color: white;
-            font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
-        }
-        .sh_price_platform, .sh_price_initial, .sh_price_final, .sh_price_discount {
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            font-family: Tahoma, Arial, Helvetica, sans-serif;
-        }
-        .sh_price_initial {
-            text-decoration: line-through;
-            color: #626366;
-        }
-        .sh_price_final {
-            color: #b0aeac;
-        }
-        .sh_price_discount {
-            color: #a4d007;
-        }
-        .sh_description {
-            font-family: Arial, Helvetica, sans-serif;
-            color: #c6d4df;
-            font-size: 12px;
-        }
-        .sh_platform_win, .sh_platform_mac, .sh_platform_linux {
-            display: none;
-            position: relative;
-            top: 4px;
-        }
-        .sh_store_page, .sh_steam_db {
-            text-decoration: none;
-            color: #67c1f5;
-        }
-        .separator {
-            color: #696563;
-            font-size: 20px;
-        }
-    </style>
+<head>
+    <title>steamhover</title>
+    <link rel="stylesheet" type="text/css" href="css/steamhover.css">
+</head>
 <body>
     <div class="sh_container">
         <div class="sh_header_image">
         </div>
         <h1 class="sh_title"></h1>
         <div class="sh_price_platform">
-            <span class="separator">|</span>
+            <span class="sh_separator">|</span>
             <span class="sh_price_initial"></span>
             <span class="sh_price_final"></span>
             <span class="sh_price_discount"></span>
-            <span class="separator">|</span>
+            <span class="sh_separator">|</span>
             <img class="sh_platform_win" src="images/icon_platform_win.png"/>
             <img class="sh_platform_mac" src="images/icon_platform_mac.png"/>
             <img class="sh_platform_linux" src="images/icon_platform_linux.png"/>
-            <span class="separator">|</span>
+            <span class="sh_separator">|</span>
             <a href="#" class="sh_store_page" target="_blank">Store Page</a>
-            <span class="separator">|</span>
+            <span class="sh_separator">|</span>
             <a href="#" class="sh_steam_db" target="_blank">Steam Database</a>
-            <span class="separator">|</span>
+            <span class="sh_separator">|</span>
         </div>
         <div class="sh_description"></div>
     </div>
     <script src="js/vendor.min.js"></script>
-    <script>
-        function formatPrice(price, locale, currency) {
-            return new Number(price / 100).toLocaleString(locale, { style: 'currency', currency: currency });
-        }
-        function showIfTrue(selector, visibility) {
-            if (visibility) {
-                $(selector).show()
-            }
-        }
-        $.get('appdetails.json').done(function(data) {
-            if (data) {
-                var appid = '730',
-                    appdetails = data[appid]['data'],
-                    locale = 'en-US',
-                    price = appdetails['price_overview'],
-                    currency = price['currency'],
-                    platforms = appdetails['platforms'];
-
-                $('.sh_header_image').html('<img src="' + appdetails['header_image'] + '"/>')
-                $('.sh_title').html(appdetails['name']);
-                $('.sh_description').html(appdetails['detailed_description']);
-                $('.sh_price_discount').html('(' + price['discount_percent'] + '%)');
-                $('.sh_price_initial').html(formatPrice(price['initial'], locale, currency));
-                $('.sh_price_final').html(formatPrice(price['final'], locale, currency));
-
-                showIfTrue('.sh_platform_win', platforms['windows']);
-                showIfTrue('.sh_platform_mac', platforms['mac']);
-                showIfTrue('.sh_platform_linux', platforms['linux']);
-
-                $('.sh_store_page').attr('href', 'http://store.steampowered.com/app/' + appid);
-                $('.sh_steam_db').attr('href', 'https://steamdb.info/app/' + appid);
-            }
-        });
-    </script>
+    <script src="js/steamhover.js"></script>
 </body>
 
 </html>
