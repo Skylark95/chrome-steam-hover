@@ -9,13 +9,15 @@ function showIfTrue(selector, visibility) {
     }
 }
 
+function getURLParam (oTarget, sVar) {
+    return decodeURI(oTarget.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURI(sVar).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
+}
+
 function displayAppDetails(appid) {
-    $.get('appdetails.json').done(function(data) {
+    $.get('/api/appdetails/?appids=' + appid).done(function(data) {
         if (data) {
             var appdetails = data[appid].data,
                 locale = 'en-US',
-                price = appdetails.price_overview,
-                currency = price.currency,
                 platforms = appdetails.platforms;
 
             // header
@@ -25,13 +27,27 @@ function displayAppDetails(appid) {
             $('.sh_title').html(appdetails.name);
 
             // description
-            $('.sh_description').html(appdetails.detailed_description);
+            var description = $('.sh_description');
+            description.html(appdetails.about_the_game);
+            description.find(':header, img, ul, br, strong').remove();
+            var parts = description.text().split(' ');
+            if (parts.length > 200) {
+                parts = parts.slice(0, 200);
+                parts.push('...');
+            }
+            description.html(parts.join(' '));
 
             // price
-            $('.sh_price_final').html(formatPrice(price.final, locale, currency));
-            if (price.discount_percent && price.discount_percent > 0) {
-                $('.sh_price_discount').html('(' + price.discount_percent + '%)');
-                $('.sh_price_initial').html(formatPrice(price.initial, locale, currency));
+            if (appdetails.is_free) {
+                $('.sh_price_final').html('FREE');
+            } else {
+                var price = appdetails.price_overview,
+                    currency = price.currency;
+                $('.sh_price_final').html(formatPrice(price.final, locale, currency));
+                if (price.discount_percent && price.discount_percent > 0) {
+                    $('.sh_price_discount').html('(' + price.discount_percent + '%)');
+                    $('.sh_price_initial').html(formatPrice(price.initial, locale, currency));
+                }
             }
 
             // platforms
@@ -56,4 +72,4 @@ function displayAppDetails(appid) {
     });
 }
 
-displayAppDetails('730');
+displayAppDetails(getURLParam(window.location, 'appid'));

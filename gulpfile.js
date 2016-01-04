@@ -2,12 +2,21 @@ var gulp = require('gulp'),
     connect = require('gulp-connect'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
+    url = require('url'),
+    proxy = require('proxy-middleware'),
     mainBowerFiles = require('main-bower-files');
 
 gulp.task('connect', function() {
     connect.server({
         root: 'dist',
-        livereload: true
+        livereload: true,
+        middleware: function(connect, o) {
+            return [(function() {
+                var options = url.parse('http://store.steampowered.com/api/appdetails');
+                options.route = '/api/appdetails';
+                return proxy(options);
+            })()];
+        }
     });
 });
 
