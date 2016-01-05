@@ -14,7 +14,7 @@ function getURLParam (oTarget, sVar) {
 }
 
 function displayAppDetails(appid) {
-    $.get('/api/appdetails/?appids=' + appid).done(function(data) {
+    $.get('/api/appdetails/?filters=basic,price_overview,platforms,genres,release_date&appids=' + appid).done(function(data) {
         if (data) {
             var appdetails = data[appid].data,
                 locale = 'en-US',
