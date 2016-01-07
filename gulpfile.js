@@ -4,12 +4,13 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     url = require('url'),
     proxy = require('proxy-middleware'),
+    cssBase64 = require('gulp-css-base64');
     mainBowerFiles = require('main-bower-files');
 
 gulp.task('connect', function() {
     connect.server({
-        root: 'dist',
-        livereload: true,
+        root: 'test',
+        livereload: false,
         middleware: function(connect, o) {
             return [(function() {
                 var options = url.parse('http://store.steampowered.com/api/appdetails');
@@ -20,22 +21,15 @@ gulp.task('connect', function() {
     });
 });
 
-gulp.task('html', function() {
-    gulp.src('./src/*.html')
-        .pipe(gulp.dest('dist'))
-        .pipe(connect.reload());
-});
-
 gulp.task('js', function() {
     gulp.src('./src/js/*.js')
-        .pipe(gulp.dest('dist/js'))
-        .pipe(connect.reload());
+        .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('css', function() {
     gulp.src('./src/css/*.css')
-        .pipe(gulp.dest('dist/css'))
-        .pipe(connect.reload());
+        .pipe(cssBase64())
+        .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('assets', function() {
@@ -51,10 +45,9 @@ gulp.task('vendor', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch(['./src/*.html'], ['html']);
     gulp.watch(['./src/js/*.js'], ['js']);
     gulp.watch(['./src/css/*.css'], ['css']);
 });
 
 gulp.task('default', ['connect', 'watch']);
-gulp.task('build', ['vendor', 'html', 'js', 'css', 'assets']);
+gulp.task('build', ['vendor', 'js', 'css', 'assets']);

@@ -44,8 +44,19 @@
 }
 .sh_platform_win, .sh_platform_mac, .sh_platform_linux {
     display: none;
+    width: 20px;
+    height: 20px;
     position: relative;
     top: 4px;
+}
+.sh_platform_win {
+    background: url('../images/icon_platform_win.png');
+}
+.sh_platform_mac {
+    background: url('../images/icon_platform_mac.png');
+}
+.sh_platform_linux {
+    background: url('../images/icon_platform_linux.png');
 }
 .sh_store_page, .sh_steam_db {
     text-decoration: none;
