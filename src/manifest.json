@@ -11,6 +11,7 @@
     },
     "background": {
         "scripts": [
+            "js/vendor.min.js",
             "js/background.js"
         ],
         "persistent": false
