@@ -1,3 +1,5 @@
+var steamAppPage = new RegExp("^http://store.steampowered.com/app/([0-9]+)/?.*$");
+
 function showIfTrue(selector, visibility) {
     if (visibility) {
         $(selector).css('display', 'inline-block');
@@ -8,11 +10,39 @@ function getURLParam(oTarget, sVar) {
     return decodeURI(oTarget.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURI(sVar).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
 }
 
-function displayAppDetails(appid) {
-    chrome.runtime.sendMessage({operation: 'appdetails', appid: appid}, function(response) {
-        if (response.success) {
-            var data = response.data;
+function hoverEventListener() {
+    if (this.href) {
+        var matches = this.href.match(steamAppPage);
+        if (matches && matches.length > 1) {
+            var appid = matches[1];
+        }
+    }
+}
 
+function loadTemplate() {
+    return new Promise(function(resolve, reject) {
+        chrome.runtime.sendMessage({operation: 'loadtemplate'}, function(response) {
+            resolve(response.template);
+        });
+    });
+}
+
+function loadAppDetails(appid) {
+    return new Promise(function(resolve, reject) {
+        chrome.runtime.sendMessage({operation: 'appdetails', appid: appid}, function(response) {
+            if (response.success) {
+                resolve(response.data);
+            } else {
+                reject();
+            }
+        });
+    });
+}
+
+function displayAppDetails(appid) {
+    loadTemplate().then(function(template) {
+        $('body').append(template);
+        loadAppDetails(appid).then(function(data) {
             // header
             $('.sh_header_image').html(data.header_image);
 
@@ -46,7 +76,7 @@ function displayAppDetails(appid) {
 
             // release date
             $('.sh_release_date').html(data.release_date);
-        }
+        });
     });
 }
 

@@ -3,6 +3,17 @@ function formatPrice(price, locale, currency) {
     return num.toLocaleString(locale, { style: 'currency', currency: currency });
 }
 
+function templateListener(request, sender, sendResponse) {
+    if (request.operation === 'loadtemplate') {
+        $.get(chrome.extension.getURL('/html/sh_container.html')).done(function(data) {
+            sendResponse({
+                template: data
+            });
+        });
+        return true;
+    }
+}
+
 function appdetailsListener(request, sender, sendResponse) {
     if (request.operation === 'appdetails' && request.appid) {
         var appid = request.appid,
@@ -75,4 +86,5 @@ function appdetailsListener(request, sender, sendResponse) {
     }
 }
 
+chrome.runtime.onMessage.addListener(templateListener);
 chrome.runtime.onMessage.addListener(appdetailsListener);

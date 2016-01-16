@@ -25,7 +25,7 @@ gulp.task('css', function() {
 });
 
 gulp.task('assets', function() {
-    gulp.src(['./src/**/*.json', './src/**/*.png'], { base: 'src'})
+    gulp.src(['./src/**/*.json', './src/**/*.png', './src/**/*.html'], { base: 'src'})
         .pipe(gulp.dest('dist'));
 });
 
