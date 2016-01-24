@@ -1,10 +1,8 @@
 var gulp = require('gulp'),
     connect = require('gulp-connect'),
     concat = require('gulp-concat'),
-    uglify = require('gulp-uglify'),
     url = require('url'),
     cssBase64 = require('gulp-css-base64');
-    mainBowerFiles = require('main-bower-files');
 
 gulp.task('connect', function() {
     connect.server({
@@ -14,26 +12,31 @@ gulp.task('connect', function() {
 });
 
 gulp.task('js', function() {
-    gulp.src('./src/js/*.js')
+    return gulp.src('./src/js/*.js')
         .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('css', function() {
-    gulp.src('./src/css/*.css')
+    return gulp.src('./src/css/*.css')
         .pipe(cssBase64())
         .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('assets', function() {
-    gulp.src(['./src/**/*.json', './src/**/*.png', './src/**/*.html'], { base: 'src'})
+    return gulp.src(['./src/**/*.json', './src/**/*.png', './src/**/*.html'], { base: 'src'})
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('vendor', function() {
-    gulp.src(mainBowerFiles('**/*.js'))
+gulp.task('vendor-js', function() {
+    return gulp.src(['bower_components/jquery/dist/jquery.min.js', 'bower_components/tooltipster/js/jquery.tooltipster.min.js'])
         .pipe(concat('vendor.min.js'))
-        .pipe(uglify())
         .pipe(gulp.dest('dist/js'));
+});
+
+
+gulp.task('vendor-css', function() {
+    return gulp.src('bower_components/tooltipster/css/tooltipster.css')
+        .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('watch', function() {
@@ -42,4 +45,5 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default', ['connect', 'watch']);
+gulp.task('vendor', ['vendor-js', 'vendor-css']);
 gulp.task('build', ['vendor', 'js', 'css', 'assets']);

@@ -1,9 +1,23 @@
 <!doctype html>
 <html>
+
 <head>
     <title>steamhover</title>
 </head>
-<body>
 
+<body>
+    <a id="testlink" href="#">Test Link</a>
+    <script>
+        function getURLParam(oTarget, sVar) {
+            return decodeURI(oTarget.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURI(sVar).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
+        }
+
+        function buildAppLink(appid) {
+            document.getElementById('testlink').href = 'http://store.steampowered.com/app/' + appid;
+        }
+        
+        buildAppLink(getURLParam(window.location, 'appid'));
+    </script>
 </body>
+
 </html>

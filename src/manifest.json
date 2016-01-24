@@ -28,6 +28,7 @@
             "js/steamhover.js"
         ],
         "css": [
+            "css/tooltipster.css",
             "css/steamhover.css"
         ]
     }]

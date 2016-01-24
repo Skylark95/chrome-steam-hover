@@ -1,7 +1,11 @@
+.tooltipster-default {
+    background-color: #3b3938 !important;
+}
+.sh_app {
+    display: none;
+}
 .sh_container {
     width: 600px;
-    border: 2px solid red;
-    padding: 10px;
     background-color: #3b3938;
 }
 .sh_header_image > img {
