@@ -21,7 +21,7 @@
     ],
     "content_scripts": [{
         "matches": [
-            "http://localhost:8080/*"
+            "<all_urls>"
         ],
         "js": [
             "js/vendor.min.js",
