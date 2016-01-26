@@ -6,17 +6,27 @@
 </head>
 
 <body>
-    <a id="testlink" href="#">Test Link</a>
+    <ul id="links">
+    </ul>
     <script>
         function getURLParam(oTarget, sVar) {
             return decodeURI(oTarget.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURI(sVar).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
         }
 
-        function buildAppLink(appid) {
-            document.getElementById('testlink').href = 'http://store.steampowered.com/app/' + appid;
+        function buildAppLinks(appids) {
+            var links = document.getElementById('links');
+            appids.split(',').forEach(function(id) {
+                var li = document.createElement('li'),
+                    a = document.createElement('a');
+
+                a.href = 'http://store.steampowered.com/app/' + id;
+                a.innerHTML = 'Steam App ' + id;
+                li.appendChild(a);
+                links.appendChild(li);
+            });
         }
-        
-        buildAppLink(getURLParam(window.location, 'appid'));
+
+        buildAppLinks(getURLParam(window.location, 'appids'));
     </script>
 </body>
 
