@@ -70,7 +70,7 @@ function displayAppDetails(appid) {
             var parts = description.text().split(' ');
             if (parts.length > 200) {
                 parts = parts.slice(0, 200);
-                parts.push('...');
+                parts.push('&hellip;');
             }
             description.html(parts.join(' '));
             description.show();
@@ -95,5 +95,8 @@ function displayAppDetails(appid) {
         });
     });
 }
-$('a').mouseenter(hoverEventListener);
-// displayAppDetails(getURLParam(window.location, 'appid'));
+
+// Install listener
+if (window.location.host !== 'store.steampowered.com') {
+    $('a').mouseenter(hoverEventListener);
+}
