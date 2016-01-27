@@ -6,8 +6,8 @@ var gulp = require('gulp'),
 
 gulp.task('connect', function() {
     connect.server({
-        root: 'test',
-        livereload: false
+        root: './',
+        livereload: true
     });
 });
 
@@ -44,6 +44,13 @@ gulp.task('watch', function() {
     gulp.watch(['./src/css/*.css'], ['css']);
 });
 
-gulp.task('default', ['connect', 'watch']);
+gulp.task('reload', function() {
+    gulp.watch(['./test/*.html', './icon/*.html'], {}, function() {
+        gulp.src(['./test/*.html', './icon/*.html'])
+            .pipe(connect.reload());
+    });
+});
+
+gulp.task('default', ['connect', 'watch', 'reload']);
 gulp.task('vendor', ['vendor-js', 'vendor-css']);
 gulp.task('build', ['vendor', 'js', 'css', 'assets']);

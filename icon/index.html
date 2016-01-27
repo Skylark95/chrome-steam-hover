@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../dist/css/steamhover.css">
+    <link rel="stylesheet" href="../dist/css/tooltipster.css">
+    <title>steamhover icon</title>
+    <style>
+        a {
+            font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
+            display: block;
+            text-align: center;
+            font-weight: bold;
+            color: #343332;
+            font-size: 150%;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#">Steam Hover</a>
+    <script src="../dist/js/vendor.min.js"></script>
+    <script>
+        $('a').tooltipster({
+            content: $('<img width="120" src="icon.png" />')
+        });
+        $('a').tooltipster('show');
+    </script>
+</body>
+
+</html>
