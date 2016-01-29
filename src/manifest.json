@@ -28,8 +28,9 @@
             "js/steamhover.js"
         ],
         "css": [
-            "css/tooltipster.css",
+            "css/vendor.min.css",
             "css/steamhover.css"
-        ]
+        ],
+        "run_at": "document_end"
     }]
 }

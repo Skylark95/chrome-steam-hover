@@ -1,8 +1,10 @@
 var gulp = require('gulp'),
     connect = require('gulp-connect'),
     concat = require('gulp-concat'),
+    uglify = require('gulp-uglify'),
     url = require('url'),
-    cssBase64 = require('gulp-css-base64');
+    cssBase64 = require('gulp-css-base64'),
+    cssnano = require('gulp-cssnano');
 
 gulp.task('connect', function() {
     connect.server({
@@ -19,6 +21,7 @@ gulp.task('js', function() {
 gulp.task('css', function() {
     return gulp.src('./src/css/*.css')
         .pipe(cssBase64())
+        .pipe(cssnano())
         .pipe(gulp.dest('dist/css'));
 });
 
@@ -28,14 +31,21 @@ gulp.task('assets', function() {
 });
 
 gulp.task('vendor-js', function() {
-    return gulp.src(['bower_components/jquery/dist/jquery.min.js', 'bower_components/tooltipster/js/jquery.tooltipster.min.js'])
+    return gulp.src([
+            'bower_components/jquery/dist/jquery.js',
+            'bower_components/tooltipster/js/jquery.tooltipster.js',
+            'bower_components/mutation-summary/src/mutation-summary.js'
+        ])
         .pipe(concat('vendor.min.js'))
+        .pipe(uglify())
         .pipe(gulp.dest('dist/js'));
 });
 
 
 gulp.task('vendor-css', function() {
     return gulp.src('bower_components/tooltipster/css/tooltipster.css')
+        .pipe(concat('vendor.min.css'))
+        .pipe(cssnano())
         .pipe(gulp.dest('dist/css'));
 });
 

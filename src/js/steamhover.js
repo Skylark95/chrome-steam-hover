@@ -96,7 +96,19 @@ function displayAppDetails(appid) {
     });
 }
 
-// Install listener
-if (window.location.host !== 'store.steampowered.com') {
-    $('a').mouseenter(hoverEventListener);
+function steamhover() {
+    if (window.location.host !== 'store.steampowered.com') {
+        // Install listener
+        $('a').mouseenter(hoverEventListener);
+
+        // Monitor DOM changes
+        new MutationSummary({
+            callback: function(summaries) {
+                $(summaries[0].added).mouseenter(hoverEventListener);
+            },
+            queries: [{element: "a"}]
+        });
+    }
 }
+
+steamhover();
