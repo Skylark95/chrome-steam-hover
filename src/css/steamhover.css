@@ -12,6 +12,9 @@
     height: 125px;
 }
 .sh_title {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
     font-size: 26px;
     line-height: 12px;
     color: white;
