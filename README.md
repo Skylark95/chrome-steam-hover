@@ -8,4 +8,4 @@ npm install
 bower install
 ```
 
-To run in chrome, execute ```gulp build``` to output a built copy of the extention to the ```./dist``` directory.  Follow the instructions on the [Chrome Developer Guide](https://developer.chrome.com/extensions/getstarted#unpacked) to load the extension.
+To run in chrome, execute ```gulp build``` to output a built copy of the extension to the ```./dist``` directory.  Follow the instructions on the [Chrome Developer Guide](https://developer.chrome.com/extensions/getstarted#unpacked) to load the extension.
