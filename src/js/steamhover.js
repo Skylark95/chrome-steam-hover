@@ -18,8 +18,8 @@ function hoverEventListener() {
                     content: $('<span>Loading&hellip;</span>')
                 });
                 link.tooltipster('show');
-                displayAppDetails(appid).then(function() {
-                    link.tooltipster('content', $($('.sh_app_' + appid).html()));
+                displayAppDetails(appid).then(function(response) {
+                    link.tooltipster('content', response.element);
                 });
             }
         }
@@ -50,11 +50,10 @@ function displayAppDetails(appid) {
     return new Promise(function(resolve, reject) {
         Promise.all([loadTemplate(), loadAppDetails(appid)]).then(function(values) {
             var template = values[0],
-                data = values[1];
+                data = values[1],
+                hoverbox = $('<div class="sh_app_' + appid + '"></div>');
 
             // template
-            $('body').append('<div class="sh_app sh_app_' + appid + '"></div>');
-            var hoverbox = $('.sh_app_' + appid);
             hoverbox.html(template);
 
             // header
@@ -91,7 +90,9 @@ function displayAppDetails(appid) {
             // release date
             hoverbox.find('.sh_release_date').html(data.release_date);
 
-            resolve();
+            resolve({
+                element: hoverbox
+            });
         });
     });
 }
