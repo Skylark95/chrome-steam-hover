@@ -45,7 +45,9 @@ gulp.task('vendor-js', function() {
 gulp.task('vendor-css', function() {
     return gulp.src('bower_components/tooltipster/css/tooltipster.css')
         .pipe(concat('vendor.min.css'))
-        .pipe(cssnano())
+        .pipe(cssnano({
+            zindex: false
+        }))
         .pipe(gulp.dest('dist/css'));
 });
 
