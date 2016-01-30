@@ -100,14 +100,17 @@ function displayAppDetails(appid) {
 function steamhover() {
     if (window.location.host !== 'store.steampowered.com') {
         // Install listener
-        $('a').mouseenter(hoverEventListener);
+        $('a[href]').mouseenter(hoverEventListener);
 
         // Monitor DOM changes
         new MutationSummary({
             callback: function(summaries) {
                 $(summaries[0].added).mouseenter(hoverEventListener);
             },
-            queries: [{element: "a"}]
+            queries: [{
+                element: "a",
+                elementAttributes: "href"
+            }]
         });
     }
 }
