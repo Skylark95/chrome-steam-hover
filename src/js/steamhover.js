@@ -7,21 +7,19 @@ function showIfTrue(hoverbox, selector, visibility) {
 }
 
 function hoverEventListener() {
-    if (this.href) {
-        var matches = this.href.match(steamAppPage);
-        if (matches && matches.length > 1) {
-            var appid = matches[1],
-                link = $(this);
-            if (!link.hasClass('tooltip')) {
-                link.addClass('tooltip');
-                link.tooltipster({
-                    content: $('<span>Loading&hellip;</span>')
-                });
-                link.tooltipster('show');
-                displayAppDetails(appid).then(function(response) {
-                    link.tooltipster('content', response.element);
-                });
-            }
+    var matches = this.href.match(steamAppPage);
+    if (matches && matches.length > 1) {
+        var appid = matches[1],
+            link = $(this);
+        if (!link.hasClass('tooltip')) {
+            link.addClass('tooltip');
+            link.tooltipster({
+                content: $('<span>Loading&hellip;</span>')
+            });
+            link.tooltipster('show');
+            displayAppDetails(appid).then(function(response) {
+                link.tooltipster('content', response.element);
+            });
         }
     }
 }
