@@ -4,6 +4,7 @@
     "manifest_version": 2,
     "description": "Show Steam app details with mouse hover on a Steam link",
     "homepage_url": "https://github.com/Skylark95/chrome-steam-hover",
+    "minimum_chrome_version": "40",
     "icons": {
         "16": "images/icon16.png",
         "48": "images/icon48.png",
@@ -19,6 +20,10 @@
     "permissions": [
         "http://store.steampowered.com/*"
     ],
+    "options_ui": {
+        "page": "options.html",
+        "chrome_style": true
+    },
     "content_scripts": [{
         "matches": [
             "<all_urls>"
