@@ -6,6 +6,14 @@ Show Steam app details with mouse hover on a Steam link
 
 
 ![](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/readme.png)
+
+## Change Default Currency
+The default currency is US Dollar. To change the currency displayed, navigate to the Chrome extentions page (chrome://extensions) and select the options link under Chrome Steam Hover.
+
+![](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/options1.png)
+
+![](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/options2.png)
+
 ## Development
 Checkout the repository and run the follwing commands to download dependencies:
 ```
