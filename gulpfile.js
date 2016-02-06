@@ -54,6 +54,7 @@ gulp.task('vendor-css', function() {
 gulp.task('watch', function() {
     gulp.watch(['./src/js/*.js'], ['js']);
     gulp.watch(['./src/css/*.css'], ['css']);
+    gulp.watch(['./src/**/*.json', './src/**/*.png', './src/**/*.html'], ['assets']);
 });
 
 gulp.task('reload', function() {

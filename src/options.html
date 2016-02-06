@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Chrome Steam Hover</title>
-        <style>
-            body: { padding: 10px; }
-        </style>
-    </head>
-    <body>
+
+<head>
+    <title>Chrome Steam Hover</title>
+    <style>
+        body: {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="options" style="display: none;">
         Currency:
-        <select>
+        <select id="currency">
             <option value="br"> BR - Brazilian Real </option>
             <option value="uk"> UK - British Pound </option>
             <option value="ca"> CA - Canadian Dollar </option>
@@ -37,8 +42,11 @@
             <option value="tw"> TW - Taiwan Dollar </option>
             <option value="th"> TH - Thai Baht </option>
             <option value="tr"> TR - Turkish Lira </option>
-            <option value="us" selected> US - U.S. Dollar </option>
+            <option value="us"> US - U.S. Dollar </option>
             <option value="ae"> AE - UAE Dirham </option>
         </select>
-    </body>
+    </div>
+    <script src="js/options.js"></script>
+</body>
+
 </html>

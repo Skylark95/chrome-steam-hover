@@ -18,6 +18,7 @@
         "persistent": false
     },
     "permissions": [
+        "storage",
         "http://store.steampowered.com/*"
     ],
     "options_ui": {
