@@ -3,6 +3,9 @@
 Show Steam app details with mouse hover on a Steam link
 
 ![](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/icon/store_icon.png)
+
+
+![](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/readme.png)
 ## Development
 Checkout the repository and run the follwing commands to download dependencies:
 ```
