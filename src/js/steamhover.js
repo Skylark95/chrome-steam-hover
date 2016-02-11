@@ -19,7 +19,6 @@ function hoverEventListener() {
             link.tooltipster('show');
             displayAppDetails(appid).then(function(response) {
                 link.tooltipster('content', response.element);
-                debugger;
             });
         }
     }
