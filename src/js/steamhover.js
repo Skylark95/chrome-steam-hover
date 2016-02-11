@@ -11,14 +11,15 @@ function hoverEventListener() {
     if (matches && matches.length > 1) {
         var appid = matches[1],
             link = $(this);
-        if (!link.hasClass('tooltip')) {
-            link.addClass('tooltip');
+        if (!link.hasClass('sh_tooltip')) {
+            link.addClass('sh_tooltip');
             link.tooltipster({
                 content: $('<span>Loading&hellip;</span>')
             });
             link.tooltipster('show');
             displayAppDetails(appid).then(function(response) {
                 link.tooltipster('content', response.element);
+                debugger;
             });
         }
     }
@@ -49,7 +50,10 @@ function displayAppDetails(appid) {
         Promise.all([loadTemplate(), loadAppDetails(appid)]).then(function(values) {
             var template = values[0],
                 data = values[1],
-                hoverbox = $('<div class="sh_app_' + appid + '"></div>');
+                hoverbox = $('<div class="sh_app"></div>');
+
+            // appid
+            hoverbox.attr('sh_appid', appid);
 
             // template
             hoverbox.html(template);
