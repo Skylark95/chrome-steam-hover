@@ -14,7 +14,8 @@ function hoverEventListener() {
         if (!link.hasClass('sh_tooltip')) {
             link.addClass('sh_tooltip');
             link.tooltipster({
-                content: $('<span>Loading&hellip;</span>')
+                content: $('<span>Loading&hellip;</span>'),
+                interactive: true
             });
             link.tooltipster('show');
             displayAppDetails(appid).then(function(response) {
@@ -66,14 +67,7 @@ function displayAppDetails(appid) {
             // description
             var description = hoverbox.find('.sh_description');
             description.html(data.description);
-            description.find(':header, img, ul, br, strong').remove();
-            var parts = description.text().split(' ');
-            if (parts.length > 200) {
-                parts = parts.slice(0, 200);
-                parts.push('&hellip;');
-            }
-            description.html(parts.join(' '));
-            description.show();
+            description.find('img').remove();
 
             // price
             hoverbox.find('.sh_price_final').html(data.price_final);
