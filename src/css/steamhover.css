@@ -43,7 +43,7 @@
     color: #c6d4df;
     font-size: 13px;
     max-height: 150px;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding-right: 8px;
 }
 .sh_description::-webkit-scrollbar {
@@ -55,8 +55,8 @@
     background-color: #353231;
 }
 .sh_description::-webkit-scrollbar-thumb {
-    border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    border-radius: 10px;
     background-color: #272625;
 }
 .sh_platform_win, .sh_platform_mac, .sh_platform_linux {
@@ -75,7 +75,7 @@
 .sh_platform_linux {
     background: url('../images/icon_platform_linux.png');
 }
-.sh_store_page, .sh_steam_db {
+.sh_store_page {
     text-decoration: none;
     color: #67c1f5;
 }

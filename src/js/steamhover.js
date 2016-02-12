@@ -85,11 +85,22 @@ function displayAppDetails(appid) {
             // release date
             hoverbox.find('.sh_release_date').html(data.release_date);
 
+            // mouse wheel event
+            hoverbox.on('wheel', handleScrollEvent);
+
             resolve({
                 element: hoverbox
             });
         });
     });
+}
+
+function handleScrollEvent(event) {
+    if (event.target.className !== 'sh_description') {
+        var description = $(this).find('.sh_description')[0];
+        description.scrollTop += event.originalEvent.deltaY;
+        event.preventDefault();
+    }
 }
 
 function steamhover() {
