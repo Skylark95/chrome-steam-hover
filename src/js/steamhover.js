@@ -67,7 +67,7 @@ function displayAppDetails(appid) {
             // description
             var description = hoverbox.find('.sh_description');
             description.html(data.description);
-            description.find('img').remove();
+            formatDescription(description);
 
             // price
             hoverbox.find('.sh_price_final').html(data.price_final);
@@ -86,7 +86,7 @@ function displayAppDetails(appid) {
             hoverbox.find('.sh_release_date').html(data.release_date);
 
             // mouse wheel event
-            hoverbox.on('wheel', handleScrollEvent);
+            hoverbox.on('wheel', handleWheelEvent);
 
             resolve({
                 element: hoverbox
@@ -95,12 +95,31 @@ function displayAppDetails(appid) {
     });
 }
 
-function handleScrollEvent(event) {
+function handleWheelEvent(event) {
     if (event.target.className !== 'sh_description') {
         var description = $(this).find('.sh_description')[0];
         description.scrollTop += event.originalEvent.deltaY;
         event.preventDefault();
     }
+}
+
+function formatDescription(description) {
+    // Remove Images and surrounding line breaks
+    description.find('img').each(function() {
+        var img = $(this);
+        if (img.prev().is('br')) {
+            img.prev().remove();
+        }
+        if (img.next().is('br')) {
+            img.next().remove();
+        }
+        img.remove();
+    });
+
+    // Replace headers with alternate style
+    description.find(':header').replaceWith(function() {
+        return $('<div class="sh_description_header" />').append($(this).html());
+    });
 }
 
 function steamhover() {
