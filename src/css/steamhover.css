@@ -5,18 +5,22 @@
     width: 600px;
     background-color: #3b3938;
 }
-.sh_header_image > img {
+.sh_header_image img {
     height: 125px;
 }
-.sh_title {
-    display: block;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
+.sh_title a {
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 5px;
     font-size: 26px;
-    line-height: 12px;
+    line-height: 26px;
     color: white;
     font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
     font-weight: normal;
+}
+.sh_title a:hover {
+    color: #63B9EB;
+    text-decoration: none;
 }
 .sh_price_platform, .sh_price_initial, .sh_price_final, .sh_price_discount {
     font-size: 14px;

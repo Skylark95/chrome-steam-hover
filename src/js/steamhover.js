@@ -11,7 +11,7 @@ function hoverEventListener() {
     if (matches && matches.length > 1) {
         var appid = matches[1],
             link = $(this);
-        if (!link.hasClass('sh_tooltip')) {
+        if (!(link.hasClass('sh_tooltip') || link.hasClass('sh_ignore'))) {
             link.addClass('sh_tooltip');
             link.tooltipster({
                 content: $('<span>Loading&hellip;</span>'),
@@ -62,7 +62,9 @@ function displayAppDetails(appid) {
             hoverbox.find('.sh_header_image').html(data.header_image);
 
             // title
-            hoverbox.find('.sh_title').html(data.title);
+            var title = hoverbox.find('.sh_title a');
+            title.text(data.title);
+            title.attr('href', 'http://store.steampowered.com/app/' + appid);
 
             // description
             var description = hoverbox.find('.sh_description');
