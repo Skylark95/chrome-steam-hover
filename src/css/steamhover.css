@@ -14,13 +14,13 @@
     margin-bottom: 5px;
     font-size: 26px;
     line-height: 26px;
-    color: white;
+    color: white !important;
     font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
     font-weight: normal;
+    text-decoration: none;
 }
 .sh_title a:hover {
-    color: #63B9EB;
-    text-decoration: none;
+    color: #63B9EB !important;
 }
 .sh_price_platform, .sh_price_initial, .sh_price_final, .sh_price_discount {
     font-size: 14px;
