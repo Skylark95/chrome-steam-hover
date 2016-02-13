@@ -5,20 +5,19 @@ Show Steam app details with mouse hover on a Steam link
 ![](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/readme.png)
 
 ## Change Default Currency
-The default currency is US Dollar. To change the currency displayed, navigate to the Chrome extentions page (chrome://extensions) and select the options link under Chrome Steam Hover.
+The default currency is US Dollar. To change the currency displayed, navigate to the Chrome extensions page (chrome://extensions) and select the options link under Chrome Steam Hover.
 
 ![](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/options1.png)
 
 ![](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/options2.png)
 
-## Development
-Checkout the repository and run the follwing commands to download dependencies:
-```
-npm install
-bower install
-```
+## Contributing
+Pull requests are welcome.
 
-To run in chrome, execute ```gulp build``` to output a built copy of the extension to the ```./dist``` directory.  Follow the instructions on the [Chrome Developer Guide](https://developer.chrome.com/extensions/getstarted#unpacked) to load the extension.
+To build, checkout the repository and run ```npm install```.  Upon completion the extension will output to the ```./dist``` directory.  To run in chrome, follow the instructions on the [Chrome Developer Guide](https://developer.chrome.com/extensions/getstarted#unpacked) to load the extension.
+
+To make changes, modify files in ```src``` and run ```gulp build``` to output the modified files to the ```./dist``` output directory.  Changes may be synced to the output directory in real time by running ```gulp watch```.
+
 
 ## License
 ```
