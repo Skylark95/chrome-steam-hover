@@ -1,0 +1,23 @@
+{
+  "name": "chrome-steam-hover-gh-pages",
+  "version": "1.0.0",
+  "description": "Show Steam app details with mouse hover on a Steam link",
+  "private": "true",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Skylark95/chrome-steam-hover.git"
+  },
+  "author": "Derek <derek@skylark95.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Skylark95/chrome-steam-hover/issues"
+  },
+  "homepage": "https://github.com/Skylark95/chrome-steam-hover#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-connect": "^2.3.1"
+  },
+  "dependencies": {
+    "bootswatch": "^3.3.6"
+  }
+}
