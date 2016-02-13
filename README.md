@@ -1,10 +1,30 @@
 # Steam Hover
 
+**In Development, Coming Soon.**
+
 Show Steam app details with mouse hover on a Steam link.
 
 ![](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/readme.png)
 
-## Change Default Currency
+## Features
+#### Show Steam app details when hovering over a link
+Simply hover your mouse over a link to view the following details:
+  * Title
+  * Image
+  * Price (including discount if applicable)
+  * Platforms
+  * Genre
+  * Release Date
+  * Description
+
+#### Open Store Page
+Click on the app title to open a new tab to the store page.
+
+#### View Full Description
+The full description is displayed in the tooltip.  Scroll your mouse wheel anywhere in the tooltip to view long descriptions that do not fit.
+
+## Options
+#### Change Default Currency
 The default currency is US Dollar. To change the currency displayed, navigate to the Chrome extensions page (chrome://extensions) and select the options link under Chrome Steam Hover.
 
 ![](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/options1.png)
