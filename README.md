@@ -1,6 +1,6 @@
-# Chrome Steam Hover
+# Steam Hover
 
-Show Steam app details with mouse hover on a Steam link
+Show Steam app details with mouse hover on a Steam link.
 
 ![](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/readme.png)
 
