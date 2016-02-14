@@ -13,9 +13,14 @@ gulp.task('html', function() {
         .pipe(connect.reload());
 });
 
-gulp.task('watch', function() {
-    gulp.watch(['./**/*.html'], ['html']);
+gulp.task('css', function() {
+    gulp.src('./**/*.css')
+        .pipe(connect.reload());
 });
 
-gulp.task('build', ['css']);
+gulp.task('watch', function() {
+    gulp.watch(['./**/*.html'], ['html']);
+    gulp.watch(['./**/*.css'], ['css']);
+});
+
 gulp.task('default', ['connect', 'watch']);

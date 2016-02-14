@@ -1,0 +1,23 @@
+h2,
+h4 {
+    padding-top: 0.5em;
+}
+hr {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.anchor {
+    position: relative;
+    top: -50px;
+    display: block;
+    visibility: hidden;
+}
+.footer {
+    margin-top: 1em;
+    background-color: #f5f5f5;
+}
+#icon {
+    margin-top: 9px;
+    margin-bottom: 9px;
+    margin-right: 0.75em;
+}
