@@ -39,5 +39,13 @@
             "css/steamhover.css"
         ],
         "run_at": "document_end"
+    },
+    {
+        "matches": [
+            "*://skylark95.github.io/chrome-steam-hover/*"
+        ],
+        "js": [
+            "js/optionslauncher.js"
+        ]
     }]
 }

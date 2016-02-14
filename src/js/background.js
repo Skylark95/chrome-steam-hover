@@ -13,6 +13,15 @@ function loadOptions() {
     });
 }
 
+function launchoptionsListener(request, sender, sendResponse) {
+    if (request.operation === 'launchoptions') {
+        chrome.runtime.openOptionsPage(function() {
+            sendResponse();
+        });
+        return true;
+    }
+}
+
 function templateListener(request, sender, sendResponse) {
     if (request.operation === 'loadtemplate') {
         $.get(chrome.extension.getURL('/html/sh_container.html')).done(function(data) {
@@ -106,3 +115,4 @@ function appdetailsListener(request, sender, sendResponse) {
 
 chrome.runtime.onMessage.addListener(templateListener);
 chrome.runtime.onMessage.addListener(appdetailsListener);
+chrome.runtime.onMessage.addListener(launchoptionsListener);
