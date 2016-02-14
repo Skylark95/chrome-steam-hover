@@ -1,3 +1,10 @@
+// Open help page on install
+chrome.runtime.onInstalled.addListener(function(details) {
+    if (details.reason === chrome.runtime.OnInstalledReason.INSTALL) {
+        chrome.tabs.create({url: 'https://skylark95.github.io/chrome-steam-hover/installed/'});
+    }
+});
+
 function formatPrice(price, locale, currency) {
     var num = price / 100;
     return num.toLocaleString(locale, { style: 'currency', currency: currency });
