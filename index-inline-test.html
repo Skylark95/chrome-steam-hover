@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Show Steam app details with mouse hover on a Steam link">
+    <meta name="author" content="Derek &lt;derek@skylark95.com&gt;">
+    <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/jfakmahmklpeigafdahkgkmnlmfjaphd">
+    <link rel="icon" href="/chrome-steam-hover/favicon.ico">
+
+    <title>Steam Hover For Chrome</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw=="
+        crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha256-Whc+9091keLVBxbyK4U697hqB4bcED+6LC64E9GuJkk= sha512-9PPlANXApnRCz1LMx2LPWwRfOKkWjQvH98q2lkxEG6/r6YVoQ+F48btbiuOpDsWHjpZrCfcGrPoVenVl69V09A=="
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/chrome-steam-hover/style.css" charset="utf-8">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body role="document">
+    <a href="https://github.com/Skylark95/chrome-steam-hover"><img class="hidden-xs hidden-sm" style="position: fixed; top: 0; right: 0; border: 0; z-index:9999;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67"
+            alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <a href="/chrome-steam-hover/"><img id="icon" class="pull-left" src="/chrome-steam-hover/favicon.png" /></a>
+            <a href="/chrome-steam-hover/" class="navbar-brand">Steam Hover For Chrome</a>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 50px;">
+        <h1 style="margin-bottom: 0px;">Steam Hover</h1>
+        <h2 style="margin-top: 0px; padding-top: 0px;"><small>Show Steam app details with mouse hover on a Steam link.</small></h2>
+        <button class="btn btn-primary" style="margin-bottom: 30px;" id="install-button">
+            <img src="chrome-icon.png" style="margin-left: -5px; margin-right: 10px;"/>
+            <span>Add to Chrome</span>
+        </button>
+        <script>
+            var button = document.getElementById('install-button'),
+                install = function() {
+                    window.location.href = "https://chrome.google.com/webstore/detail/jfakmahmklpeigafdahkgkmnlmfjaphd";
+                };
+            if (typeof chrome !== 'undefined') {
+                install = function() {
+                    chrome.webstore.install();
+                }
+                if (chrome.app.isInstalled) {
+                    button.style.display = 'none';
+                }
+            }
+            button.addEventListener('click', install);
+        </script>
+        <p><img class="img-responsive" src="https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/readme.png" /></p>
+        <a id="features" class="anchor"></a><h2>Features</h2>
+        <h4><strong>Show Steam app details when hovering over a link</strong></h4>
+        <p>Simply hover your mouse over a link to view the following details:</p>
+        <ul>
+            <li>Title</li>
+            <li>Image</li>
+            <li>Price (including discount if applicable)</li>
+            <li>Platforms</li>
+            <li>Release Date</li>
+            <li>Description</li>
+        </ul>
+        <h4><strong>Open Store Page</strong></h4>
+        <p>Click on the app title to open a new tab to the store page.</p>
+        <h4><strong>View Full Description</strong></h4>
+        <p>The full description is displayed in the tooltip. Scroll your mouse wheel anywhere in the tooltip to view long descriptions that do not fit.</p>
+        <a id="options" class="anchor"></a><h2>Options</h2>
+        <div id="options-button" class="hidden">
+            <h4><strong>Open Options</strong></h4>
+            <p>Click the button below to open the options screen.</p>
+            <div style="margin-bottom: 10px;">
+                <button id="open-options" type="button" class="btn btn-primary" style="margin-bottom: 10px;">Open Steam Hover Options</button>
+                <div id="reload-alert" class="alert alert-success hidden" role="alert">Reload the page for options to take effect.</div>
+            </div>
+        </div>
+        <h4><strong>Change Default Currency</strong></h4>
+        <p>The default currency is US Dollar. To change the currency displayed, navigate to the Chrome extensions page (chrome://extensions) and select the options link under Chrome Steam Hover.</p>
+        <p><img class="img-responsive" src="https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/options1.png" /></p>
+        <p><img class="img-responsive" src="https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/options2.png" /></p>
+        <a id="contributing" class="anchor"></a><h2>Contributing</h2>
+        <p>Pull requests are welcome.</p>
+        <p>To build, checkout the repository and run <code class="prettyprint lang-prettyprinted"><span class="pln">npm install</span></code>. Upon completion the extension will output to the <code class="prettyprint lang-prettyprinted"><span class="pun">./</span><span class="pln">dist</span></code>            directory. To run in chrome, follow the instructions on the <a href="https://developer.chrome.com/extensions/getstarted#unpacked">Chrome Developer Guide</a> to load the extension.</p>
+        <p>To make changes, modify files in <code class="prettyprint lang-prettyprinted"><span class="pln">src</span></code> and run <code class="prettyprint lang-prettyprinted"><span class="pln">gulp build</span></code> to output the modified files to the
+            <code class="prettyprint lang-prettyprinted"><span class="pun">./</span><span class="pln">dist</span></code> output directory. Changes may be synced to the output directory in real time by running <code class="prettyprint lang-prettyprinted"><span class="pln">gulp watch</span></code>.</p>
+        <a id="license" class="anchor"></a><h2>License</h2>
+        <pre><code class="prettyprint lang-prettyprinted">
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+
+</code></pre>
+    </div>
+    <footer class="footer">
+        <div class="container" style="padding-top: 1em; padding-bottom: 1em;">
+            <div>Created by <a href="http://www.skylark95.com/">Skylark95</a>, 2016</div>
+            <div style="margin-top: 0.5em">
+                <iframe src="https://ghbtns.com/github-btn.html?user=skylark95&repo=chrome-steam-hover&type=star&count=true" frameborder="0" scrolling="0" width="90px" height="20px"></iframe>
+                <iframe src="https://ghbtns.com/github-btn.html?user=skylark95&repo=chrome-steam-hover&type=fork&count=true" frameborder="0" scrolling="0" width="90px" height="20px"></iframe>
+            </div>
+            <hr />
+            <p>This site is not affiliated with Valve, Steam, or any of their partners. All copyrights reserved to their respective owners.</p>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
+</body>
+
+</html>
