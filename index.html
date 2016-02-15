@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Show Steam app details with mouse hover on a Steam link">
     <meta name="author" content="Derek &lt;derek@skylark95.com&gt;">
+    <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/jfakmahmklpeigafdahkgkmnlmfjaphd">
     <link rel="icon" href="/chrome-steam-hover/favicon.ico">
 
     <title>Steam Hover For Chrome</title>
@@ -36,6 +37,25 @@
     <div class="container" style="margin-top: 50px;">
         <h1 style="margin-bottom: 0px;">Steam Hover</h1>
         <h2 style="margin-top: 0px; padding-top: 0px;"><small>Show Steam app details with mouse hover on a Steam link.</small></h2>
+        <button class="btn btn-primary" style="margin-bottom: 30px;" id="install-button">
+            <img src="chrome-icon.png" style="margin-left: -5px; margin-right: 10px;"/>
+            <span>Add to Chrome</span>
+        </button>
+        <script>
+            var button = document.getElementById('install-button'),
+                install = function() {
+                    window.location.href = "https://chrome.google.com/webstore/detail/jfakmahmklpeigafdahkgkmnlmfjaphd";
+                };
+            if (typeof chrome !== 'undefined') {
+                install = function() {
+                    chrome.webstore.install();
+                }
+                if (chrome.app.isInstalled) {
+                    button.style.display = 'none';
+                }
+            }
+            button.addEventListener('click', install);
+        </script>
         <p><img class="img-responsive" src="https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/readme.png" /></p>
         <a id="features" class="anchor"></a><h2>Features</h2>
         <h4><strong>Show Steam app details when hovering over a link</strong></h4>
