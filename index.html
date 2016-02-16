@@ -37,25 +37,11 @@
     <div class="container" style="margin-top: 50px;">
         <h1 style="margin-bottom: 0px;">Steam Hover</h1>
         <h2 style="margin-top: 0px; padding-top: 0px;"><small>Show Steam app details with mouse hover on a Steam link.</small></h2>
-        <button class="btn btn-primary" style="margin-bottom: 30px;" id="install-button">
+        <button class="btn btn-primary" style="margin-bottom: 5px;" id="install-button">
             <img src="chrome-icon.png" style="margin-left: -5px; margin-right: 10px;"/>
             <span>Add to Chrome</span>
         </button>
-        <script>
-            var button = document.getElementById('install-button'),
-                install = function() {
-                    window.location.href = "https://chrome.google.com/webstore/detail/jfakmahmklpeigafdahkgkmnlmfjaphd";
-                };
-            if (typeof chrome !== 'undefined') {
-                install = function() {
-                    chrome.webstore.install();
-                }
-                if (chrome.app.isInstalled) {
-                    button.style.display = 'none';
-                }
-            }
-            button.addEventListener('click', install);
-        </script>
+        <p style="margin-bottom: 20px;"><a href="https://chrome.google.com/webstore/detail/jfakmahmklpeigafdahkgkmnlmfjaphd">Steam Hover on Chrome Web Store</a></p>
         <p><img class="img-responsive" src="https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/readme.png" /></p>
         <a id="features" class="anchor"></a><h2>Features</h2>
         <h4><strong>Show Steam app details when hovering over a link</strong></h4>
@@ -120,6 +106,7 @@ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
+    <script src="/chrome-steam-hover/install.js"></script>
 </body>
 
 </html>
