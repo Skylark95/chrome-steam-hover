@@ -13,6 +13,7 @@ Simply hover your mouse over a link to view the following details:
   * Image
   * Price (including discount if applicable)
   * Platforms
+  * Trading Cards
   * Genre
   * Release Date
   * Description
