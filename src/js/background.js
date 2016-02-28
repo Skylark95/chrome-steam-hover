@@ -1,3 +1,6 @@
+// Constants
+const TRADING_CARDS_ID = 29;
+
 // Open help page on install
 chrome.runtime.onInstalled.addListener(function(details) {
     if (details.reason === chrome.runtime.OnInstalledReason.INSTALL) {
@@ -40,8 +43,19 @@ function templateListener(request, sender, sendResponse) {
     }
 }
 
+function hasCategory(categoryId, categories) {
+    var categoryFound = false;
+    $.each(categories, function(idx, category) {
+        if (category.id == categoryId) {
+            categoryFound = true;
+            return false;
+        }
+    });
+    return categoryFound;
+}
+
 function steamApi(appid, cc) {
-    var filters = 'basic,price_overview,platforms,genres,release_date';
+    var filters = 'basic,price_overview,platforms,genres,release_date,categories';
     return $.get('http://store.steampowered.com/api/appdetails/?filters=' + filters + '&appids=' + appid + '&cc=' + cc);
 }
 
@@ -107,6 +121,9 @@ function appdetailsListener(request, sender, sendResponse) {
                         } else {
                             response.data.release_date = 'Coming Soon';
                         }
+
+                        // trading cards
+                        response.data.trading_cards = hasCategory(TRADING_CARDS_ID, appdetails.categories);
                     }
                 }
             });

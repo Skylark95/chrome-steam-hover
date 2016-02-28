@@ -81,6 +81,9 @@ function displayAppDetails(appid) {
             showIfTrue(hoverbox, '.sh_platform_mac', data.platform_mac);
             showIfTrue(hoverbox, '.sh_platform_linux', data.platform_linux);
 
+            // trading cards
+            showIfTrue(hoverbox, '.sh_trading_cards', data.trading_cards);
+
             // genre
             hoverbox.find('.sh_genre').html(data.genre);
 

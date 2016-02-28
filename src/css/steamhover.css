@@ -68,7 +68,7 @@
     margin-bottom: 0px;
     font-size: 15px;
 }
-.sh_platform_win, .sh_platform_mac, .sh_platform_linux {
+.sh_platform_win, .sh_platform_mac, .sh_platform_linux  {
     display: none;
     width: 20px;
     height: 20px;
@@ -83,6 +83,14 @@
 }
 .sh_platform_linux {
     background: url('../images/icon_platform_linux.png');
+}
+.sh_trading_cards {
+    display: none;
+    width: 25px;
+    height: 20px;
+    position: relative;
+    top: 4px;
+    background: url('../images/icon_cards.png');
 }
 .sh_store_page {
     text-decoration: none;
