@@ -16,11 +16,23 @@ function formatPrice(price, locale, currency) {
 function loadOptions() {
     return new Promise(function(resolve, reject) {
         chrome.storage.sync.get({
-            currency: 'us'
+            currency: 'us',
+            delay: 200
         }, function(items) {
             resolve(items);
         });
     });
+}
+
+function loadoptionsListener(request, sender, sendResponse) {
+    if (request.operation === 'loadoptions') {
+        loadOptions().then(function(items) {
+            sendResponse({
+                options: items
+            });
+        });
+        return true;
+    }
 }
 
 function launchoptionsListener(request, sender, sendResponse) {
@@ -139,4 +151,5 @@ function appdetailsListener(request, sender, sendResponse) {
 
 chrome.runtime.onMessage.addListener(templateListener);
 chrome.runtime.onMessage.addListener(appdetailsListener);
+chrome.runtime.onMessage.addListener(loadoptionsListener);
 chrome.runtime.onMessage.addListener(launchoptionsListener);

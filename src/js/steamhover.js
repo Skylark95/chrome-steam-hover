@@ -1,4 +1,5 @@
-var steamAppPage = new RegExp("^http://store.steampowered.com/app/([0-9]+)/?.*$");
+var steamAppPage = new RegExp("^http://store.steampowered.com/app/([0-9]+)/?.*$"),
+    tooltipDelay = 200;
 
 function showIfTrue(hoverbox, selector, visibility) {
     if (visibility) {
@@ -15,9 +16,12 @@ function hoverEventListener() {
             link.addClass('sh_tooltip');
             link.tooltipster({
                 content: $('<span>Loading&hellip;</span>'),
-                interactive: true
+                interactive: true,
+                delay: tooltipDelay
             });
-            link.tooltipster('show');
+            setTimeout(function() {
+                link.tooltipster('show');
+            }, tooltipDelay);
             displayAppDetails(appid).then(function(response) {
                 link.tooltipster('content', response.element);
             });
@@ -29,6 +33,14 @@ function loadTemplate() {
     return new Promise(function(resolve, reject) {
         chrome.runtime.sendMessage({operation: 'loadtemplate'}, function(response) {
             resolve(response.template);
+        });
+    });
+}
+
+function loadOptions() {
+    return new Promise(function(resolve, reject) {
+        chrome.runtime.sendMessage({operation: 'loadoptions'}, function(response) {
+            resolve(response.options);
         });
     });
 }
@@ -129,6 +141,11 @@ function formatDescription(description) {
 
 function steamhover() {
     if (window.location.host !== 'store.steampowered.com') {
+        // Load Options
+        loadOptions().then(function(options) {
+            tooltipDelay = options.delay;
+        });
+
         // Install listener
         $('a[href]').mouseenter(hoverEventListener);
 

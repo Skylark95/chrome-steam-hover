@@ -7,11 +7,16 @@
         body: {
             padding: 10px;
         }
+        .sh_option_header {
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 
 <body>
     <div id="options" style="display: none;">
+        <div class="sh_option_header"><strong>General</strong></div>
         Currency:
         <select id="currency">
             <option value="br"> BR - Brazilian Real </option>
@@ -45,6 +50,9 @@
             <option value="us"> US - U.S. Dollar </option>
             <option value="ae"> AE - UAE Dirham </option>
         </select>
+        <div class="sh_option_header"><strong>Advanced Options</strong></div>
+        Tooltip Delay (ms):
+        <input id="delay" type="number" min="0" max="9999" step="1"></input>
     </div>
     <script src="js/options.js"></script>
 </body>
