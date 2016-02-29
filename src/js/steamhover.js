@@ -37,7 +37,7 @@ function loadAppDetails(appid) {
     return new Promise(function(resolve, reject) {
         chrome.runtime.sendMessage({operation: 'appdetails', appid: appid}, function(response) {
             if (response.success) {
-                resolve(response.data);
+                resolve(response);
             } else {
                 reject();
             }
@@ -49,7 +49,8 @@ function displayAppDetails(appid) {
     return new Promise(function(resolve, reject) {
         Promise.all([loadTemplate(), loadAppDetails(appid)]).then(function(values) {
             var template = values[0],
-                data = values[1],
+                data = values[1].data,
+                options = values[1].options,
                 hoverbox = $('<div class="sh_app"></div>');
 
             // appid
@@ -65,6 +66,18 @@ function displayAppDetails(appid) {
             var title = hoverbox.find('.sh_title a');
             title.text(data.title);
             title.attr('href', 'http://store.steampowered.com/app/' + appid);
+
+            // title on wishlist
+            if (data.added_to_wishlist) {
+                title.attr('style', 'color: ' + options.wishlist_color + ' !important');
+                title.attr('title', 'On Wishlist');
+            }
+
+            // title owned
+            if (data.is_owned) {
+                title.attr('style', 'color: ' + options.owned_color + ' !important');
+                title.attr('title', 'You already own this game');
+            }
 
             // description
             var description = hoverbox.find('.sh_description');

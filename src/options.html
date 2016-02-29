@@ -4,16 +4,34 @@
 <head>
     <title>Chrome Steam Hover</title>
     <style>
-        body: {
-            padding: 10px;
+        .option {
+            padding-top: 3px;
+            padding-bottom: 3px;
+        }
+        .color_default {
+            position: relative;
+            top: -2px;
+            height: 27px;
+            margin-left: 3px;
+        }
+        label {
+            display: inline-block;
+            width: 90px;
+            text-align: right;
+            font-size: 110%;
+        }
+        input {
+            margin-left: 4px;
         }
     </style>
 </head>
 
 <body>
     <div id="options" style="display: none;">
-        Currency:
-        <select id="currency">
+        <div style="margin-bottom: 10px;">Hover over options for description.</div>
+        <div class="option" title="The currency to display prices in">
+        <label for="currency">Currency:</label>
+        <select style="margin-left: 4px" id="currency">
             <option value="br"> BR - Brazilian Real </option>
             <option value="uk"> UK - British Pound </option>
             <option value="ca"> CA - Canadian Dollar </option>
@@ -44,7 +62,18 @@
             <option value="tr"> TR - Turkish Lira </option>
             <option value="us"> US - U.S. Dollar </option>
             <option value="ae"> AE - UAE Dirham </option>
-        </select>
+        </select></div>
+        <div class="option" title="Color to change the title if owned">
+            <label for="owned_color">Owned Color:</label>
+            <input id="owned_color" type="color" />
+            <button class="color_default" id="owned_color_default">Default</button>
+        </div>
+        <div class="option" title="Color to change the title if on wishlist">
+            <label for="wishlist_color">Wishlist Color:</label>
+            <input id="wishlist_color" type="color" />
+            <button class="color_default" id="wishlist_color_default">Default</button>
+        </div>
+        <div style="font-size: 90%; color: #595959;">You must be signed into Steam for the title to change color.</div>
     </div>
     <script src="js/options.js"></script>
 </body>

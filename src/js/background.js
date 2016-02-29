@@ -16,7 +16,9 @@ function formatPrice(price, locale, currency) {
 function loadOptions() {
     return new Promise(function(resolve, reject) {
         chrome.storage.sync.get({
-            currency: 'us'
+            currency: 'us',
+            owned_color: '#8ee22d',
+            wishlist_color: '#4ecdef'
         }, function(items) {
             resolve(items);
         });
@@ -55,8 +57,10 @@ function hasCategory(categoryId, categories) {
 }
 
 function steamApi(appid, cc) {
-    var filters = 'basic,price_overview,platforms,genres,release_date,categories';
-    return $.get('http://store.steampowered.com/api/appdetails/?filters=' + filters + '&appids=' + appid + '&cc=' + cc);
+    var filters = 'basic,price_overview,platforms,genres,release_date,categories',
+        appdetails = $.get('http://store.steampowered.com/api/appdetails/?filters=' + filters + '&appids=' + appid + '&cc=' + cc),
+        appuserdetails = $.get('http://store.steampowered.com/api/appuserdetails/?appids=' + appid);
+    return $.when(appdetails, appuserdetails);
 }
 
 function appdetailsListener(request, sender, sendResponse) {
@@ -69,13 +73,15 @@ function appdetailsListener(request, sender, sendResponse) {
 
             response.success = false;
             response.data = {};
+            response.options = options;
 
-            promise.done(function(data) {
-                if (data) {
-                    response.success = data[appid].success;
+            promise.done(function(data, userData) {
+                if (data && data[0]) {
+                    response.success = data[0][appid].success;
 
                     if (response.success) {
-                        var appdetails = data[appid].data,
+                        var appdetails = data[0][appid].data,
+                            appuserdetails = userData[0][appid].success && userData[0][appid].data,
                             locale = 'en-US',
                             platforms = appdetails.platforms;
 
@@ -124,6 +130,10 @@ function appdetailsListener(request, sender, sendResponse) {
 
                         // trading cards
                         response.data.trading_cards = hasCategory(TRADING_CARDS_ID, appdetails.categories);
+
+                        // ownership
+                        response.data.is_owned = appuserdetails && appuserdetails.is_owned;
+                        response.data.added_to_wishlist = appuserdetails && appuserdetails.added_to_wishlist;
                     }
                 }
             });
