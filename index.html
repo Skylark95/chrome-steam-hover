@@ -16,7 +16,7 @@
         crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha256-Whc+9091keLVBxbyK4U697hqB4bcED+6LC64E9GuJkk= sha512-9PPlANXApnRCz1LMx2LPWwRfOKkWjQvH98q2lkxEG6/r6YVoQ+F48btbiuOpDsWHjpZrCfcGrPoVenVl69V09A=="
         crossorigin="anonymous">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/chrome-steam-hover/style.css" charset="utf-8">
 
     <!--[if lt IE 9]>
@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="container" style="margin-top: 50px;">
-        <h1 style="margin-bottom: 0px;">Steam Hover</h1>
+        <h1 style="margin-bottom: 0px;">Steam Hover <small style="font-size: 35%">Version 1.1</small></h1>
         <h2 style="margin-top: 0px; padding-top: 0px;"><small>Show Steam app details with mouse hover on a Steam link.</small></h2>
         <button class="btn btn-primary" style="margin-bottom: 5px;" id="install-button">
             <img src="chrome-icon.png" style="margin-left: -5px; margin-right: 10px;"/>
@@ -44,20 +44,34 @@
         <p style="margin-bottom: 20px;"><a href="https://chrome.google.com/webstore/detail/jfakmahmklpeigafdahkgkmnlmfjaphd">Steam Hover on Chrome Web Store</a></p>
         <p><img class="img-responsive" src="https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/readme.png" /></p>
         <a id="features" class="anchor"></a><h2>Features</h2>
-        <h4><strong>Show Steam app details when hovering over a link</strong></h4>
+        <a id="show-steam-app-details-when-hovering-over-a-link" class="anchor"></a><h4><strong>Show Steam app details when hovering over a link</strong></h4>
         <p>Simply hover your mouse over a link to view the following details:</p>
         <ul>
             <li>Title</li>
             <li>Image</li>
             <li>Price (including discount if applicable)</li>
-            <li>Platforms</li>
-            <li>Trading Cards</li>
+            <li>Platforms
+                <img class="invert-icon" title="Windows" src="https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/src/images/icon_platform_win.png" />
+                <img class="invert-icon" title="Mac" src="https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/src/images/icon_platform_mac.png" />
+                <img class="invert-icon" title="Linux" src="https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/src/images/icon_platform_linux.png" />
+            </li>
+            <li>Trading Cards
+                <img class="invert-icon" style="width: 24px;" title="Trading Cards" src="https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/src/images/icon_cards.png" />
+            </li>
             <li>Release Date</li>
             <li>Description</li>
         </ul>
-        <h4><strong>Open Store Page</strong></h4>
+        <a id="show-if-owned-or-on-wishlist" class="anchor"></a><h4><strong>Show if Owned or on Wishlist</strong></h4>
+        <p>Change the title color if game is owned or on wishlist</p>
+        <ul>
+            <li>Title will be <strong>green</strong> if owned (<a data-lightbox="owned-wishlist" data-title="Title will be green if owned" href="https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/ownership-feature/screenshots/readme_owned.png">example screenshot</a>)</li>
+            <li>Title will be <strong>blue</strong> if on wishlist (<a data-lightbox="owned-wishlist" data-title="Title will be blue if on wishlist" href="https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/ownership-feature/screenshots/readme_wishlist.png">example screenshot</a>)</li>
+            <li>Colors may be changed in <a href="#change-owned-or-wishlist-color">options</a></li>
+            <li><strong>Must be signed into Steam for title to change color</strong></li>
+        </ul>
+        <a id="open-store-page" class="anchor"></a><h4><strong>Open Store Page</strong></h4>
         <p>Click on the app title to open a new tab to the store page.</p>
-        <h4><strong>View Full Description</strong></h4>
+        <a id="view-full-description" class="anchor"></a><h4><strong>View Full Description</strong></h4>
         <p>The full description is displayed in the tooltip. Scroll your mouse wheel anywhere in the tooltip to view long descriptions that do not fit.</p>
         <a id="options" class="anchor"></a><h2>Options</h2>
         <div id="options-button" class="hidden">
@@ -68,10 +82,13 @@
                 <div id="reload-alert" class="alert alert-success hidden" role="alert">Reload the page for options to take effect.</div>
             </div>
         </div>
-        <h4><strong>Change Default Currency</strong></h4>
+        <p><img class="img-responsive" src="https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/ownership-feature/screenshots/options1.png" /></p>
+        <p><img class="img-responsive" src="https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/ownership-feature/screenshots/options2.png" /></p>
+        <a id="change-default-currency" class="anchor"></a><h4><strong>Change Default Currency</strong></h4>
         <p>The default currency is US Dollar. To change the currency displayed, navigate to the Chrome extensions page (chrome://extensions) and select the options link under Chrome Steam Hover.</p>
-        <p><img class="img-responsive" src="https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/options1.png" /></p>
-        <p><img class="img-responsive" src="https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/options2.png" /></p>
+        <a id="change-owned-or-wishlist-color" class="anchor"></a><h4><strong>Change Owned or Wishlist Color</strong></h4>
+        <p>The default colors for owned and wishlist title color are shades of green and and blue. The colors may be changed by clicking on the assigned color in options to pick a new color.</p>
+        <p>Note that you must be signed into Steam for the title to change color.</p>
         <a id="contributing" class="anchor"></a><h2>Contributing</h2>
         <p>Pull requests are welcome.</p>
         <p>To build, checkout the repository and run <code class="prettyprint lang-prettyprinted"><span class="pln">npm install</span></code>. Upon completion the extension will output to the <code class="prettyprint lang-prettyprinted"><span class="pun">./</span><span class="pln">dist</span></code>            directory. To run in chrome, follow the instructions on the <a href="https://developer.chrome.com/extensions/getstarted#unpacked">Chrome Developer Guide</a> to load the extension.</p>
@@ -108,6 +125,7 @@ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bowser/1.0.0/bowser.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
     <script type="text/javascript" src="/chrome-steam-hover/install.js"></script>
 </body>
 

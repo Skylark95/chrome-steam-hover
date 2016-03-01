@@ -21,3 +21,9 @@ hr {
     margin-bottom: 9px;
     margin-right: 0.75em;
 }
+.invert-icon {
+    -webkit-filter: invert(1);
+    filter: invert(100%);
+    height: 18px;
+    width: 18px;
+}
