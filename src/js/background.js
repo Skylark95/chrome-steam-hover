@@ -132,8 +132,14 @@ function appdetailsListener(request, sender, sendResponse) {
                         response.data.trading_cards = hasCategory(TRADING_CARDS_ID, appdetails.categories);
 
                         // ownership
-                        response.data.is_owned = appuserdetails && appuserdetails.is_owned;
-                        response.data.added_to_wishlist = appuserdetails && appuserdetails.added_to_wishlist;
+                        response.data.user_signed_in = false;
+                        if (appuserdetails) {
+                            response.data.user_signed_in = true;
+                            response.data.is_owned = appuserdetails.is_owned;
+                            response.data.added_to_wishlist = appuserdetails.added_to_wishlist;
+                        }
+
+
                     }
                 }
             });

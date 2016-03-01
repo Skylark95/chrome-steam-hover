@@ -67,6 +67,11 @@ function displayAppDetails(appid) {
             title.text(data.title);
             title.attr('href', 'http://store.steampowered.com/app/' + appid);
 
+            // title user sign in
+            if (data.user_signed_in) {
+                title.attr('title', 'You are signed into Steam');
+            }
+
             // title on wishlist
             if (data.added_to_wishlist) {
                 title.attr('style', 'color: ' + options.wishlist_color + ' !important');
