@@ -27,3 +27,6 @@ hr {
     height: 18px;
     width: 18px;
 }
+.version-number {
+    font-size: 35%;
+}

@@ -15,7 +15,7 @@
         crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha256-Whc+9091keLVBxbyK4U697hqB4bcED+6LC64E9GuJkk= sha512-9PPlANXApnRCz1LMx2LPWwRfOKkWjQvH98q2lkxEG6/r6YVoQ+F48btbiuOpDsWHjpZrCfcGrPoVenVl69V09A=="
         crossorigin="anonymous">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/chrome-steam-hover/style.css" charset="utf-8">
 
     <!--[if lt IE 9]>
@@ -34,13 +34,23 @@
         </div>
     </div>
     <div class="container" style="padding-top: 50px;">
-        <h1 style="margin-bottom: 0px;">Steam Hover Installed</h1>
+        <h1 style="margin-bottom: 0px;">Steam Hover Updated <small class="version-number">Version 1.1</small></h1>
         <h2 style="margin-top: 0px; padding-top: 0px;"><small>Show Steam app details with mouse hover on a Steam link.</small></h2>
-        <a id="try-it-out" class="anchor"></a><h2>Try It Out</h2>
-        <p>Steam Hover will display Steam app details when hovering over a Steam link.  Try it out with the link below.</p>
-        <h4><strong><a style="text-decoration: underline;" href="http://store.steampowered.com/app/220/" target="_blank">Half-Life 2 on Steam</a></strong></h4>
-        <blockquote><small>1998. HALF-LIFE sends a shock through the game industry with its combination of pounding action and continuous, immersive storytelling. Valve's debut title wins more than 50 game-of-the-year awards on its way to being named "Best PC Game Ever" by PC Gamer, and launches a franchise with more than eight million retail units sold worldwide.</small></blockquote>
-        <p>See the full list of features <a href="/chrome-steam-hover/#features">HERE</a>.</p>
+        <img class="img-responsive" src="https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/ownership-feature/screenshots/readme_owned.png" />
+        <a id="new-features" class="anchor"></a><h2>New Features</h2>
+        <a id="show-if-owned-or-on-wishlist" class="anchor"></a><h4><strong>Show if Owned or on Wishlist</strong> <small>New in Version 1.1</small></h4>
+        <p>Change the title color if game is owned or on wishlist</p>
+        <ul>
+            <li>Title will be <strong>green</strong> if owned (<a data-lightbox="owned-wishlist" data-title="Title will be green if owned" href="https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/ownership-feature/screenshots/readme_owned.png">screenshot</a>)</li>
+            <li>Title will be <strong>blue</strong> if on wishlist (<a data-lightbox="owned-wishlist" data-title="Title will be blue if on wishlist" href="https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/ownership-feature/screenshots/readme_wishlist.png">screenshot</a>)</li>
+            <li>Title will be <strong>white</strong> if you are not signed into steam or do not own the game</li>
+            <ul>
+                <li><strong>TIP:</strong> Mouse over the title to view tooltip indicating if you are signed in  (<a data-lightbox="owned-wishlist" data-title="Mouse over the title to view tooltip indicating if you are signed in" href="https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/ownership-feature/screenshots/readme_notsignedin.png">screenshot</a>)</li>
+            </ul>
+            <li><strong>Must be signed into Steam for title to change color</strong></li>
+            <li>Colors may be changed in <a href="#options">options</a></li>
+        </ul>
+        <p style="margin-top: 25px;">See the full list of features <a href="/chrome-steam-hover/#features">HERE</a>.</p>
         <a id="options" class="anchor"></a><h2>Options</h2>
         <div id="options-button" class="hidden">
             <h4><strong>Open Options</strong></h4>
@@ -71,6 +81,7 @@
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
 </body>
 
 </html>
