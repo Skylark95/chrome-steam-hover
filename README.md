@@ -13,9 +13,22 @@ Simply hover your mouse over a link to view the following details:
   * Image
   * Price (including discount if applicable)
   * Platforms
+  * Trading Cards
   * Genre
   * Release Date
   * Description
+
+#### Show if Owned or on Wishlist
+Change the title color if game is owned or on wishlist
+
+  * Title will be **green** if owned ([screenshot](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/readme_owned.png))
+  * Title will be **blue** if on wishlist ([screenshot](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/readme_wishlist.png))
+  * Title will be **white** if you are not signed into steam or do not own the game
+    * **TIP**: Mouse over the title to view tooltip indicating if you are signed in ([screenshot](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/readme_notsignedin.png))
+  * **Must be signed into Steam for title to change color**
+  * Colors may be changed in [options](#options)
+
+
 
 #### Open Store Page
 Click on the app title to open a new tab to the store page.
@@ -24,12 +37,17 @@ Click on the app title to open a new tab to the store page.
 The full description is displayed in the tooltip.  Scroll your mouse wheel anywhere in the tooltip to view long descriptions that do not fit.
 
 ## Options
-#### Change Default Currency
-The default currency is US Dollar. To change the currency displayed, navigate to the Chrome extensions page (chrome://extensions) and select the options link under Chrome Steam Hover.
-
 ![](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/options1.png)
 
 ![](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/master/screenshots/options2.png)
+
+#### Change Default Currency
+The default currency is US Dollar. To change the currency displayed, navigate to the Chrome extensions page (chrome://extensions) and select the options link under Chrome Steam Hover.
+
+#### Change Owned or Wishlist Color
+The default colors for owned and wishlist title color are shades of green and and blue. The colors may be changed by clicking on the assigned color in options to pick a new color.
+
+Note that you must be signed into Steam for the title to change color.
 
 ## Contributing
 Pull requests are welcome.
