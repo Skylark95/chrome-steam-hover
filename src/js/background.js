@@ -5,6 +5,8 @@ const TRADING_CARDS_ID = 29;
 chrome.runtime.onInstalled.addListener(function(details) {
     if (details.reason === chrome.runtime.OnInstalledReason.INSTALL) {
         chrome.tabs.create({url: 'https://skylark95.github.io/chrome-steam-hover/installed/'});
+    } else if (details.reason === chrome.runtime.OnInstalledReason.UPDATE && details.previousVersion.startsWith("1.0")) {
+        chrome.tabs.create({url: 'https://skylark95.github.io/chrome-steam-hover/update/1.1/'});
     }
 });
 
