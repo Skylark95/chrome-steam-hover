@@ -16,7 +16,7 @@
         }
         label {
             display: inline-block;
-            width: 90px;
+            width: 87px;
             text-align: right;
             font-size: 110%;
         }
@@ -78,10 +78,12 @@
             <input id="wishlist_color" type="color" />
             <button class="color_default" id="wishlist_color_default">Default</button>
         </div>
-        <div style="font-size: 90%; color: #595959;">You must be signed into Steam for the title to change color.</div>
+        <div style="font-size: 90%; color: #595959; margin-bottom: 25px;">You must be signed into Steam for the title to change color.</div>
         <div class="sh_option_header"><strong>Advanced Options</strong></div>
-        <label for="delay">Tooltip Delay (ms):</label>
-        <input id="delay" type="number" min="0" max="9999" step="1" />
+        <div class="option" title="Time to wait in milliseconds before the tooltip appears">
+            <label for="delay" style="width: 112px;">Tooltip Delay (ms):</label>
+            <input id="delay" type="number" min="0" max="9999" step="1" />
+        </div>
     </div>
     <script src="js/options.js"></script>
 </body>
