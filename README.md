@@ -21,10 +21,10 @@ Simply hover your mouse over a link to view the following details:
 #### Show if Owned or on Wishlist
 Change the title color if game is owned or on wishlist
 
-  * Title will be **green** if owned ([screenshot](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/ownership-feature/screenshots/readme_owned.png))
-  * Title will be **blue** if on wishlist ([screenshot](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/ownership-feature/screenshots/readme_wishlist.png))
+  * Title will be **green** if owned ([screenshot](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/dev/screenshots/readme_owned.png))
+  * Title will be **blue** if on wishlist ([screenshot](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/dev/screenshots/readme_wishlist.png))
   * Title will be **white** if you are not signed into steam or do not own the game
-    * **TIP**: Mouse over the title to view tooltip indicating if you are signed in ([screenshot](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/ownership-feature/screenshots/readme_notsignedin.png))
+    * **TIP**: Mouse over the title to view tooltip indicating if you are signed in ([screenshot](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/dev/screenshots/readme_notsignedin.png))
   * **Must be signed into Steam for title to change color**
   * Colors may be changed in [options](#options)
 
@@ -37,9 +37,9 @@ Click on the app title to open a new tab to the store page.
 The full description is displayed in the tooltip.  Scroll your mouse wheel anywhere in the tooltip to view long descriptions that do not fit.
 
 ## Options
-![](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/ownership-feature/screenshots/options1.png)
+![](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/dev/screenshots/options1.png)
 
-![](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/ownership-feature/screenshots/options2.png)
+![](https://raw.githubusercontent.com/Skylark95/chrome-steam-hover/dev/screenshots/options2.png)
 
 #### Change Default Currency
 The default currency is US Dollar. To change the currency displayed, navigate to the Chrome extensions page (chrome://extensions) and select the options link under Chrome Steam Hover.
