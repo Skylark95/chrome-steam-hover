@@ -4,6 +4,12 @@ function onCurrencyChange() {
     });
 }
 
+function onDelayChange() {
+    chrome.storage.sync.set({
+        delay: Math.round(this.value)
+    });
+}
+
 function onOwnedColorChange() {
     chrome.storage.sync.set({
         owned_color: this.value
@@ -31,10 +37,12 @@ function onWishlistColorDefault() {
 function restoreOptions() {
     chrome.storage.sync.get({
         currency: 'us',
+        delay: 200,
         owned_color: '#8ee22d',
         wishlist_color: '#4ecdef'
     }, function(items) {
         document.getElementById('currency').value = items.currency;
+        document.getElementById('delay').value = items.delay;
         document.getElementById('owned_color').value = items.owned_color;
         document.getElementById('wishlist_color').value = items.wishlist_color;
         document.getElementById('options').setAttribute('style', "display: block;");
@@ -43,6 +51,7 @@ function restoreOptions() {
 
 document.addEventListener('DOMContentLoaded', restoreOptions);
 document.getElementById('currency').addEventListener('change', onCurrencyChange);
+document.getElementById('delay').addEventListener('change', onDelayChange);
 document.getElementById('owned_color').addEventListener('change', onOwnedColorChange);
 document.getElementById('wishlist_color').addEventListener('change', onWishlistColorChange);
 document.getElementById('owned_color_default').addEventListener('click', onOwnedColorDefault);

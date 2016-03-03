@@ -23,12 +23,17 @@
         input {
             margin-left: 4px;
         }
+        .sh_option_header {
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 
 <body>
     <div id="options" style="display: none;">
         <div style="margin-bottom: 10px;">Hover over options for description.</div>
+        <div class="sh_option_header"><strong>General</strong></div>
         <div class="option" title="The currency to display prices in">
         <label for="currency">Currency:</label>
         <select style="margin-left: 4px" id="currency">
@@ -74,6 +79,9 @@
             <button class="color_default" id="wishlist_color_default">Default</button>
         </div>
         <div style="font-size: 90%; color: #595959;">You must be signed into Steam for the title to change color.</div>
+        <div class="sh_option_header"><strong>Advanced Options</strong></div>
+        <label for="delay">Tooltip Delay (ms):</label>
+        <input id="delay" type="number" min="0" max="9999" step="1" />
     </div>
     <script src="js/options.js"></script>
 </body>
