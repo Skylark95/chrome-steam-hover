@@ -1,7 +1,7 @@
 {
     "name": "Steam Hover",
-    "version": "1.1.0",
-    "version_name": "1.1.0",
+    "version": "1.1.1",
+    "version_name": "1.1.1",
     "manifest_version": 2,
     "description": "Show Steam app details with mouse hover on a Steam link",
     "homepage_url": "https://skylark95.github.io/chrome-steam-hover/",
@@ -20,7 +20,7 @@
     },
     "permissions": [
         "storage",
-        "http://store.steampowered.com/*"
+        "<all_urls>"
     ],
     "options_ui": {
         "page": "options.html",
@@ -35,8 +35,7 @@
             "js/steamhover.js"
         ],
         "css": [
-            "css/vendor.min.css",
-            "css/steamhover.css"
+            "css/vendor.min.css"
         ],
         "run_at": "document_end"
     },

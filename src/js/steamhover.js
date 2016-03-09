@@ -1,5 +1,6 @@
 var steamAppPage = new RegExp("^http://store.steampowered.com/app/([0-9]+)/?.*$"),
-    tooltipDelay = 200;
+    tooltipDelay = 200,
+    injectTooltipStyle = true;
 
 function showIfTrue(hoverbox, selector, visibility) {
     if (visibility) {
@@ -13,19 +14,30 @@ function hoverEventListener() {
         var appid = matches[1],
             link = $(this);
         if (!(link.hasClass('sh_tooltip') || link.hasClass('sh_ignore'))) {
+            doInjectTooltipStyle();
             link.addClass('sh_tooltip');
             link.tooltipster({
                 content: $('<span>Loading&hellip;</span>'),
                 interactive: true,
+                contentCloning: false,
                 delay: tooltipDelay
             });
             setTimeout(function() {
                 link.tooltipster('show');
             }, tooltipDelay);
             displayAppDetails(appid).then(function(response) {
-                link.tooltipster('content', response.element);
+                var content = response.element.get(0);
+                content.detach = $.noop;
+                link.tooltipster('content', content);
             });
         }
+    }
+}
+
+function doInjectTooltipStyle() {
+    if (injectTooltipStyle) {
+        chrome.runtime.sendMessage({operation: 'injecttooltipstyle'});
+        injectTooltipStyle = false;
     }
 }
 
@@ -60,22 +72,19 @@ function loadAppDetails(appid) {
 function displayAppDetails(appid) {
     return new Promise(function(resolve, reject) {
         Promise.all([loadTemplate(), loadAppDetails(appid)]).then(function(values) {
-            var template = values[0],
+            var template = $(values[0]),
                 data = values[1].data,
                 options = values[1].options,
-                hoverbox = $('<div class="sh_app"></div>');
+                hoverbox = $('<div></div>');
 
             // appid
             hoverbox.attr('sh_appid', appid);
 
-            // template
-            hoverbox.html(template);
-
             // header
-            hoverbox.find('.sh_header_image').html(data.header_image);
+            template.find('.sh_header_image').html(data.header_image);
 
             // title
-            var title = hoverbox.find('.sh_title a');
+            var title = template.find('.sh_title a');
             title.text(data.title);
             title.attr('href', 'http://store.steampowered.com/app/' + appid);
 
@@ -97,45 +106,38 @@ function displayAppDetails(appid) {
             }
 
             // description
-            var description = hoverbox.find('.sh_description');
+            var description = template.find('.sh_description');
             description.html(data.description);
             formatDescription(description);
 
             // price
-            hoverbox.find('.sh_price_final').html(data.price_final);
-            hoverbox.find('.sh_price_discount').html(data.price_discount);
-            hoverbox.find('.sh_price_initial').html(data.price_initial);
+            template.find('.sh_price_final').html(data.price_final);
+            template.find('.sh_price_discount').html(data.price_discount);
+            template.find('.sh_price_initial').html(data.price_initial);
 
             // platforms
-            showIfTrue(hoverbox, '.sh_platform_win', data.platform_win);
-            showIfTrue(hoverbox, '.sh_platform_mac', data.platform_mac);
-            showIfTrue(hoverbox, '.sh_platform_linux', data.platform_linux);
+            showIfTrue(template, '.sh_platform_win', data.platform_win);
+            showIfTrue(template, '.sh_platform_mac', data.platform_mac);
+            showIfTrue(template, '.sh_platform_linux', data.platform_linux);
 
             // trading cards
-            showIfTrue(hoverbox, '.sh_trading_cards', data.trading_cards);
+            showIfTrue(template, '.sh_trading_cards', data.trading_cards);
 
             // genre
-            hoverbox.find('.sh_genre').html(data.genre);
+            template.find('.sh_genre').html(data.genre);
 
             // release date
-            hoverbox.find('.sh_release_date').html(data.release_date);
+            template.find('.sh_release_date').html(data.release_date);
 
-            // mouse wheel event
-            hoverbox.on('wheel', handleWheelEvent);
+            // template
+            var shadow = hoverbox.get(0).createShadowRoot();
+            shadow.innerHTML = template.html();
 
             resolve({
                 element: hoverbox
             });
         });
     });
-}
-
-function handleWheelEvent(event) {
-    if (event.target.className !== 'sh_description') {
-        var description = $(this).find('.sh_description')[0];
-        description.scrollTop += event.originalEvent.deltaY;
-        event.preventDefault();
-    }
 }
 
 function formatDescription(description) {

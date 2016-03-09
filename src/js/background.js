@@ -28,6 +28,17 @@ function loadOptions() {
     });
 }
 
+function injecttooltipstyleListener(request, sender, sendResponse) {
+    if (request.operation === 'injecttooltipstyle') {
+        chrome.tabs.insertCSS(sender.tab.id, {
+            code: '.tooltipster-default { background-color: #3b3938 !important; }'
+        }, function() {
+            sendResponse();
+        });
+        return true;
+    }
+}
+
 function loadoptionsListener(request, sender, sendResponse) {
     if (request.operation === 'loadoptions') {
         loadOptions().then(function(items) {
@@ -171,3 +182,4 @@ chrome.runtime.onMessage.addListener(templateListener);
 chrome.runtime.onMessage.addListener(appdetailsListener);
 chrome.runtime.onMessage.addListener(loadoptionsListener);
 chrome.runtime.onMessage.addListener(launchoptionsListener);
+chrome.runtime.onMessage.addListener(injecttooltipstyleListener);

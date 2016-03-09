@@ -1,23 +1,126 @@
-<div class="sh_container">
-    <div class="sh_header_image"></div>
-    <div class="sh_title">
-        <a href="#" title="You are not signed into Steam" class="sh_ignore" target="_blank"></a>
+<div>
+    <style>
+        .sh_container {
+            width: 600px;
+            background-color: #3b3938;
+        }
+        .sh_header_image img {
+            height: 125px;
+        }
+        .sh_title a {
+            display: inline-block;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-size: 26px;
+            line-height: 26px;
+            color: white;
+            font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
+            font-weight: normal;
+            text-decoration: none;
+        }
+        .sh_title a:hover {
+            text-decoration: underline;
+        }
+        .sh_price_platform, .sh_price_initial, .sh_price_final, .sh_price_discount {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-family: Tahoma, Arial, Helvetica, sans-serif;
+        }
+        .sh_price_platform {
+            color: #b0aeac;
+            font-weight: normal;
+        }
+        .sh_price_initial {
+            text-decoration: line-through;
+            color: #626366;
+        }
+        .sh_price_final {
+            color: #b0aeac;
+        }
+        .sh_price_discount {
+            color: #a4d007;
+        }
+        .sh_description {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #c6d4df;
+            font-size: 13px;
+            max-height: 150px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+        .sh_description::-webkit-scrollbar {
+            width: 10px;
+        }
+        .sh_description::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            background-color: #353231;
+        }
+        .sh_description::-webkit-scrollbar-thumb {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+            border-radius: 10px;
+            background-color: #272625;
+        }
+        .sh_description_header {
+            margin-top: 18px;
+            margin-bottom: 0;
+            font-size: 15px;
+        }
+        .sh_platform_win, .sh_platform_mac, .sh_platform_linux  {
+            display: none;
+            width: 20px;
+            height: 20px;
+            position: relative;
+            top: 4px;
+        }
+        .sh_platform_win {
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAABF1BMVEX///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+UT8lBAAAAXHRSTlMAAgQFBgcJDRQYGh0fICMoLC8yNjc4PT5DSEtMUFJTVVhcXWFiY2ZnaGpsbW9xdXd/hIeJjZGSk5ianKa1w8XJ0NHS09Xa3d7h4uPm5+rr7O7y8/T19vf4+fz9/qlD2UsAAAC2SURBVHjarczFDgIBDEXRQQZ3d/fBXQd3d+v/fwcUuoEdCXfzkpO0zD8SmXx+s/ALuenxNM1/mmQOz8Z2i5gRKDWEVsDKtVun2VpxhDm0e6SHM9K/TcivZwtYBq6IVfaN4nQy4gkmKoC56doxPsO5rYpuAI5dGWHj9TKYi6fSWS+ZdIbIc3CYTLYZQhtgpfprDISFbX+wh9gQrSsiNCpYVh0OAVYko7TN3WXP65jP5M6wS8P82AMqdCqZXnoaKgAAAABJRU5ErkJggg==);
+        }
+        .sh_platform_mac {
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAq1BMVEX///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9HdxPLAAAAOHRSTlMAAgQHDxkcHSUoKSo9RUtOUFVaXWZnbHZ4gYeOmpukra6wtri6u7/Cx8nLzNHW3evt8PP09fj8/fujiIkAAAB+SURBVHjarc7LFkIAEIDhqXQjhRCiIlRCF8W8/5NlM4OjVad/+a1++KX56dAzIUOnhxqexx1Q9rG3iY6Brw2IRjbWvQqsMwnXBVLXKaGP3BKomO0hfMFqwegytq5W90YvhMNtgzugJjnZTQJOfmKZpBW+VWilh9ZMtEMD/tEHx2waZMGcAwUAAAAASUVORK5CYII=);
+        }
+        .sh_platform_linux {
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAA81BMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9YqtblAAAAUHRSTlMAAAEHDA0OEBEXHB4nNTY3ODo8PUhKTVJUVVhcXWZnam5wcnV2eIWIiYqOlZqcnZ6ho6SlpqeptL7CyMnMzdDR19je3+Hi6/Dx9PX4+vv8/TU2AXEAAADCSURBVHjajdDVEsIwEAXQxYoUL+6uLe7FXQrs/38NIUmnD8AM9/FMdrJ7wfQlvxBI/O39XdvKHiDhaBsiT0/Q0Tbn9EBUBY783coniEPsMwwyu4hKpedW0Uuxy3AcC4G1kUeZ4oFhJBwHZ62EO4rK9W0KmOvNlrhGjSLY8xttYgWymjRFHQHMjlQaIHFCRD6eS1qIF30dpGEfSXiMuqCcZcZXghEeMtXCjFlfP3OBt+WZknEmCIPPQkgCnf3TqO7/5l/bTS8S82k1RQAAAABJRU5ErkJggg==);
+        }
+        .sh_trading_cards {
+            display: none;
+            width: 25px;
+            height: 20px;
+            position: relative;
+            top: 4px;
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAUCAYAAAB4d5a9AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AIcBgon4fcrNgAAASxJREFUOMvtlDtKBEEQhr+amRWfCIKIieh6Aw3MvIFgZGayBzA38xYaaOphFNFEMBQRFQ+wujLOb1ILzTjOa2VN/KHpprrpr6u6qmBckrQmKVU7PUraLbs/8XkRiIEB8BzYy2TAPLAArNSBZD5fmNl2Te8ngCPgEOhK2gKmgiMZcGlmb/kXRw2iHAfn94Edt8ltq8AGcJ0UhKCJUp+PgVNgxiEZcDOMVDJCvph7kgFPZnafC2c69Cr6pQSNyzajcZTIPySvrE4xtupGPiJgWVIXmPa9fpgMechnA8gA+PD1AdBzoDy9J3+CLEna856kCkgH2PT1nI+iWvoGWQfOghdVFWOnTkdICopqtuHf9IET4DwMkd91F0JsxPbyYGZXVSn8Cry3hLwAt/y1vgD0lHxcSmakowAAAABJRU5ErkJggg==);
+        }
+        .sh_store_page {
+            text-decoration: none;
+            color: #67c1f5;
+        }
+        .sh_separator {
+            color: #696563;
+            font-size: 20px;
+        }
+    </style>
+    <div class="sh_container">
+        <div class="sh_header_image"></div>
+        <div class="sh_title">
+            <a href="#" title="You are not signed into Steam" class="sh_ignore" target="_blank"></a>
+        </div>
+        <div class="sh_price_platform">
+            <span class="sh_separator">|</span>
+            <span class="sh_price_initial"></span>
+            <span class="sh_price_final"></span>
+            <span class="sh_price_discount"></span>
+            <span class="sh_separator">|</span>
+            <span title="Windows" class="sh_platform_win"></span>
+            <span title="Mac" class="sh_platform_mac"></span>
+            <span title="Linux" class="sh_platform_linux"></span>
+            <span title="Trading Cards" class="sh_trading_cards"></span>
+            <span class="sh_separator">|</span>
+            <span class="sh_genre"></span>
+            <span class="sh_separator">|</span>
+            <span class="sh_release_date"></span>
+            <span class="sh_separator">|</span>
+        </div>
+        <div class="sh_description"></div>
     </div>
-    <div class="sh_price_platform">
-        <span class="sh_separator">|</span>
-        <span class="sh_price_initial"></span>
-        <span class="sh_price_final"></span>
-        <span class="sh_price_discount"></span>
-        <span class="sh_separator">|</span>
-        <span title="Windows" class="sh_platform_win"></span>
-        <span title="Mac" class="sh_platform_mac"></span>
-        <span title="Linux" class="sh_platform_linux"></span>
-        <span title="Trading Cards" class="sh_trading_cards"></span>
-        <span class="sh_separator">|</span>
-        <span class="sh_genre"></span>
-        <span class="sh_separator">|</span>
-        <span class="sh_release_date"></span>
-        <span class="sh_separator">|</span>
-    </div>
-    <div class="sh_description"></div>
 </div>
