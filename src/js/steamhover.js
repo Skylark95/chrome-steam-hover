@@ -1,4 +1,4 @@
-var steamAppPage = new RegExp("^http://store.steampowered.com/app/([0-9]+)/?.*$"),
+var steamAppPage = new RegExp("^https?://store.steampowered.com/app/([0-9]+)/?.*$"),
     tooltipDelay = 200;
 
 function showIfTrue(hoverbox, selector, visibility) {
