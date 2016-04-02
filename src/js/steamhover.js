@@ -79,6 +79,11 @@ function displayAppDetails(appid) {
             title.text(data.title);
             title.attr('href', 'http://store.steampowered.com/app/' + appid);
 
+            // title too many requests
+            if (data.too_many_requests) {
+                title.attr('title', 'Too Many Requests');
+            }
+
             // title user sign in
             if (data.user_signed_in) {
                 title.attr('title', 'You are signed into Steam');
