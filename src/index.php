@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-$key='e28a0f5e411152eb17efcd9a355e1ff57a72e2c0';
+$key='';
 $id = $_GET["id"];
 isThereAnyDeal($id, $key);
 
