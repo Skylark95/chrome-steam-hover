@@ -1,12 +1,14 @@
 <?php
+define('API_KEY', '');
+define('CACHE_TIME', 14400);
 header('Content-Type: application/json');
-$key='';
-$appid = $_GET["appid"];
-$cc = $_GET["cc"];
-isThereAnyDeal($appid, $key, $cc);
+header('Cache-Control: public max-age=3600');
+$appid = $_GET['appid'];
+$cc = $_GET['cc'];
+isThereAnyDeal($appid, $cc);
 
 /*
- * Functions
+ * Curl
  */
 function curl($url) {
     $ch = curl_init();
@@ -46,28 +48,41 @@ function curlMulti($urls) {
     return $result;
 }
 
-function isThereAnyDeal($appid, $key, $cc) {
+/*
+ * IsThereAnyDeal
+ */
+function isThereAnyDeal($appid, $cc) {
     validateId($appid);
     validateCC($cc);
-    $plainResponse = curl("https://api.isthereanydeal.com/v02/game/plain/?key=$key&shop=steam&game_id=app/$appid");
-    $plain = $plainResponse->data->plain;
-    $urls = array(
-        "prices" => "https://api.isthereanydeal.com/v01/game/prices/?key=$key&plains=$plain",
-        "lowest" => "https://api.isthereanydeal.com/v01/game/lowest/?key=$key&plains=$plain",
-        "bundles" => "https://api.isthereanydeal.com/v01/game/bundles/?key=$key&plains=$plain"
-    );
-    $response = curlMulti($urls);
-    // echo json_encode($price);
-    echo json_encode([
-        "current_low" => getCurrentLow($response["prices"], $plain),
-        "historical_low" => getHistoricalLow($response["lowest"], $plain),
-        "bundles" => getBundles($response["bundles"], $plain),
-        ".meta" => getMeta($response["prices"], $appid, $cc),
-        ".cache" => getCache()
-    ]);
+    $value = loadCache($appid, $cc);
+    if (!$value) {
+        $key = API_KEY;
+        $plainResponse = curl("https://api.isthereanydeal.com/v02/game/plain/?key=$key&shop=steam&game_id=app/$appid");
+        $plain = $plainResponse->data->plain;
+        $urls = array(
+            "prices" => "https://api.isthereanydeal.com/v01/game/prices/?key=$key&plains=$plain",
+            "lowest" => "https://api.isthereanydeal.com/v01/game/lowest/?key=$key&plains=$plain",
+            "bundles" => "https://api.isthereanydeal.com/v01/game/bundles/?key=$key&plains=$plain"
+        );
+        $response = curlMulti($urls);
+        $data = [
+            "current_low" => getCurrentLow($response["prices"], $plain),
+            "historical_low" => getHistoricalLow($response["lowest"], $plain),
+            "bundles" => getBundles($response["bundles"], $plain),
+            ".meta" => getMeta($response["prices"], $appid, $cc),
+            ".cache" => getCacheMeta()
+        ];
+        saveCache($appid, $cc, $data);
+        $data[".cache"]["is_cached"] = false;
+        $value = json_encode($data);
+    }
+    echo $value;
     exit();
 }
 
+/*
+ * Validation
+ */
 function validateId($appid) {
     if (preg_match('/^[0-9]{1,9}$/', $appid) !== 1) {
         http_response_code(400);
@@ -89,6 +104,10 @@ function validateCC($cc) {
         exit();
     }
 }
+
+/*
+ * Get Data
+ */
 
 function getCurrentLow($prices, $plain) {
     $list = $prices->data->$plain->list;
@@ -116,8 +135,30 @@ function getMeta($obj, $appid, $cc) {
     );
 }
 
-function getCache() {
+function getCacheMeta() {
     return array(
-        "is_cached" => false
+        "is_cached" => true,
+        "expires" => time() + CACHE_TIME
     );
+}
+
+/*
+ * Cache
+ */
+function loadCache($appid, $cc) {
+    if (isCached($appid, $cc)) {
+        $file = ".cache/$appid.$cc.json";
+        return file_get_contents($file);
+    }
+    return false;
+}
+
+function saveCache($appid, $cc, $data) {
+    $file = ".cache/$appid.$cc.json";
+    file_put_contents($file, json_encode($data));
+}
+
+function isCached($appid, $cc) {
+    $file = ".cache/$appid.$cc.json";
+    return file_exists($file) && filemtime($file) + CACHE_TIME >= time();
 }
